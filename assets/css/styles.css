@@ -3637,19 +3637,8 @@ body {
         transform: none;
         margin-bottom: 0.5rem;
         display: inline-flex;
-    }
-
-    .project-hero {
-        padding: 1.5rem;
-        border-radius: 24px;
-        overflow: hidden;
-        /* Prevent overflow */
-    }
-
-    /* Fix overlapping content */
-    .project-hero-content {
-        position: relative;
-        z-index: 5;
+        animation: none !important;
+        /* Disable animation on mobile */
     }
 
     .project-hero-icon {
