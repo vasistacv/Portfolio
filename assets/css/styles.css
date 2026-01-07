@@ -3256,11 +3256,19 @@ body {
     .skill-orbs {
         grid-template-columns: repeat(2, 1fr);
     }
+
+    .featured-highlights {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+    .experience-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 @media (max-width: 768px) {
     .skill-orbs {
-        grid-template-columns: 1fr 1fr;
+        grid-template-columns: repeat(2, 1fr);
     }
 
     .category-header {
@@ -3274,11 +3282,144 @@ body {
 
     .tool-chip {
         padding: 0.6rem 1rem;
+        font-size: 0.8rem;
+    }
+
+    .tool-chip img {
+        width: 20px;
+        height: 20px;
+    }
+
+    .featured-highlights {
+        grid-template-columns: 1fr;
+    }
+
+    .featured-content {
+        padding: 2rem;
+    }
+
+    .featured-title {
+        font-size: 1.5rem;
+    }
+
+    .featured-header {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .featured-logo {
+        margin: 0 auto;
+    }
+
+    .experience-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .projects-section {
+        padding: 100px 5%;
+    }
+
+    .skills-section {
+        padding: 100px 5%;
+    }
+
+    .project-hero-title {
+        font-size: 1.3rem;
+    }
+
+    .project-hero-tech {
+        justify-content: center;
+    }
+
+    .project-hero-metrics {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 1rem;
+    }
+
+    .showcase-title {
+        font-size: 1.1rem;
+    }
+
+    .showcase-desc {
+        font-size: 0.85rem;
     }
 }
 
 @media (max-width: 480px) {
     .skill-orbs {
         grid-template-columns: 1fr;
+    }
+
+    .skill-category {
+        padding: 1.5rem;
+    }
+
+    .orb-content i {
+        font-size: 1.75rem;
+    }
+
+    .orb-name {
+        font-size: 0.9rem;
+    }
+
+    .skill-bar-name {
+        font-size: 0.85rem;
+    }
+
+    .tool-chip {
+        padding: 0.5rem 0.8rem;
+    }
+
+    .tool-chip span {
+        font-size: 0.75rem;
+    }
+
+    .tool-chip img {
+        width: 18px;
+        height: 18px;
+    }
+
+    .projects-github-btn {
+        padding: 1rem 1.5rem;
+        font-size: 0.9rem;
+    }
+
+    .showcase-inner {
+        padding: 1.5rem;
+    }
+
+    .showcase-icon {
+        width: 48px;
+        height: 48px;
+        font-size: 1.25rem;
+    }
+
+    .project-hero {
+        padding: 1.5rem;
+    }
+
+    .project-hero-icon {
+        width: 80px;
+        height: 80px;
+        font-size: 2rem;
+    }
+
+    .project-hero-metrics .metric {
+        padding: 0.75rem 1rem;
+    }
+
+    .metric-value {
+        font-size: 1.2rem;
+    }
+
+    .experience-stats {
+        padding: 1.5rem;
+        gap: 1.5rem;
+        flex-direction: column;
+    }
+
+    .stat-value {
+        font-size: 2rem;
     }
 }

@@ -333,6 +333,23 @@
     margin: 0.3rem 0;
 }
 
+/* Chat List Items - Better Formatting */
+.message-bubble .chat-list-item {
+    display: block;
+    padding: 0.4rem 0;
+    padding-left: 0.25rem;
+    line-height: 1.5;
+    border-bottom: 1px solid rgba(99, 102, 241, 0.05);
+}
+
+.message-bubble .chat-list-item:last-child {
+    border-bottom: none;
+}
+
+.message-bubble .chat-list-item strong {
+    color: #4f46e5;
+}
+
 .message.bot .message-bubble {
     background: white;
     color: #1e293b;
