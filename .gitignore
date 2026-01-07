@@ -20,10 +20,9 @@ node_modules/
 dist/
 build/
 
-# Environment & Secrets
+# Environment
 .env
 .env.local
-assets/js/config.js
 
 # Temporary
 *.tmp

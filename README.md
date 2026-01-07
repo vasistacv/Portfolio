@@ -1,158 +1,149 @@
-# 🚀 Vashista C V - Portfolio
+# 🚀 Vashista C V — Portfolio
 
 <div align="center">
 
-![Portfolio Preview](https://img.shields.io/badge/Portfolio-Live-brightgreen?style=for-the-badge)
-![ISRO](https://img.shields.io/badge/ISRO-NRSC-orange?style=for-the-badge)
-![License](https://img.shields.io/badge/License-MIT-blue?style=for-the-badge)
+![Portfolio](https://img.shields.io/badge/Portfolio-Live-00C853?style=for-the-badge&logo=vercel&logoColor=white)
+![ISRO](https://img.shields.io/badge/ISRO-NRSC-FF6F00?style=for-the-badge&logo=spacex&logoColor=white)
+![AI](https://img.shields.io/badge/AI-Chatbot-6366F1?style=for-the-badge&logo=openai&logoColor=white)
 
-### **ISRO Project Student | AI/ML Engineer | Cybersecurity Specialist**
+<br/>
 
-*A premium, enterprise-level portfolio showcasing cutting-edge projects and professional experience*
+### **Project Student @ ISRO-NRSC | AI/ML Engineer | Cybersecurity Specialist**
 
-[**🌐 View Live**](https://vasistacv.github.io/Portfolio) • [**📧 Contact**](mailto:vasisthamanju796@gmail.com) • [**💼 LinkedIn**](https://linkedin.com/in/vashistacv)
+An ultra-premium, enterprise-level portfolio featuring advanced animations,<br/>
+holographic effects, and an AI-powered chatbot assistant.
+
+<br/>
+
+[**🌐 Live Demo**](https://portfolio-vasistacv.vercel.app) &nbsp;•&nbsp; [**💼 LinkedIn**](https://linkedin.com/in/vashistacv) &nbsp;•&nbsp; [**🐙 GitHub**](https://github.com/vasistacv)
 
 </div>
 
 ---
 
-## ✨ Features
+## 🎯 Overview
+
+This portfolio showcases my professional journey, technical expertise, and innovative projects. Currently serving as a **Project Student at ISRO-NRSC (National Remote Sensing Centre), Hyderabad**, working on satellite imagery analysis and AI/ML applications for space technology.
+
+---
+
+## ✨ Key Features
 
 | Feature | Description |
 |---------|-------------|
-| 🎨 **Ultra-Premium Design** | Modern glassmorphism, holographic effects, and smooth animations |
-| 🤖 **AI Chatbot** | Intelligent assistant powered by Groq API with ChatGPT-like streaming |
-| 📱 **Fully Responsive** | Seamless experience across all devices |
-| ⚡ **High Performance** | Optimized CSS and lazy-loading images |
-| 🌙 **Dynamic Sections** | Each section has a unique, stunning design |
+| 🎨 **Premium Design** | Glassmorphism, holographic cards, aurora backgrounds, and 60+ custom animations |
+| 🤖 **AI Assistant** | Intelligent chatbot powered by Groq API with ChatGPT-like streaming responses |
+| 📱 **Fully Responsive** | Seamlessly adapts across desktop, tablet, and mobile devices |
+| ⚡ **High Performance** | Optimized assets, lazy loading, and smooth 60fps animations |
+| 🌙 **Unique Sections** | Each section features a distinct, eye-catching design theme |
 
 ---
 
-## 🏗️ Project Structure
+## 🏗️ Project Architecture
 
 ```
 Portfolio/
-├── index.html                    # Main HTML file
-├── README.md                     # Project documentation
-├── .gitignore                    # Git ignore rules
 │
-├── assets/
-│   ├── css/
-│   │   ├── styles.css           # Main stylesheet (3000+ lines)
-│   │   └── chatbot.css          # Chatbot specific styles
-│   │
-│   ├── js/
-│   │   ├── script.js            # Main JavaScript (animations, effects)
-│   │   ├── chatbot.js           # AI Chatbot logic with Groq API
-│   │   ├── config.js            # API config (gitignored)
-│   │   └── config.sample.js     # Sample config template
-│   │
-│   ├── images/
-│   │   └── *.jpg, *.jpeg, *.webp # Profile & project images
-│   │
-│   └── documents/
-│       ├── Vashista_C_V_CV.pdf  # Resume/CV
-│       └── *.pdf                 # Research papers & documents
+├── index.html                          # Entry point
+├── README.md                           # Documentation
+├── .gitignore                          # Git configuration
+│
+└── assets/
+    ├── css/
+    │   ├── styles.css                  # Core styles (3300+ lines)
+    │   └── chatbot.css                 # Chatbot UI styles
+    │
+    ├── js/
+    │   ├── script.js                   # Animations & interactions
+    │   ├── chatbot.js                  # AI chatbot engine
+    │   └── config.sample.js            # API configuration template
+    │
+    ├── images/                         # Optimized media assets
+    │
+    └── documents/                      # CV & publications
 ```
 
 ---
 
-## 🛠️ Technologies Used
+## 🛠️ Technology Stack
 
 <div align="center">
 
-| Frontend | Styling | Interactivity | AI Integration |
-|----------|---------|---------------|----------------|
-| HTML5 | CSS3 | JavaScript ES6+ | Groq API |
-| Semantic Markup | Glassmorphism | Scroll Animations | LLama 3.3 70B |
-| SEO Optimized | Custom Gradients | 3D Tilt Effects | Streaming Responses |
+| Category | Technologies |
+|:--------:|:-------------|
+| **Frontend** | HTML5, CSS3, JavaScript ES6+ |
+| **Styling** | Custom CSS, Glassmorphism, CSS Animations |
+| **AI Integration** | Groq API, LLama 3.3 70B Versatile |
+| **Deployment** | Vercel, GitHub Pages |
+| **Design** | Figma-inspired, Mobile-first approach |
 
 </div>
 
 ---
 
-## 🎯 Featured Sections
+## 📌 Featured Sections
 
-### 1. **Hero Section**
-- Professional profile with floating skill cards
-- Animated morphing background shapes
-- ISRO-NRSC badge highlight
+### 🏠 Hero
+> Dynamic profile showcase with floating skill cards and ISRO badge
 
-### 2. **Experience Timeline**
-- Featured ISRO card with golden glow animation
-- 4 categorized experience cards
-- Statistics bar with key metrics
+### 💼 Experience  
+> Golden-themed ISRO featured card with internship timeline
 
-### 3. **Projects Showcase**
-- Dark holographic theme with floating orbs
-- Flagship project hero card
-- Live demo links and GitHub integration
+### 🚀 Projects
+> Dark holographic theme with live demo links and GitHub repos
 
-### 4. **Skills Galaxy**
-- Animated skill orbs with progress rings
-- Color-coded category cards
-- Tool chips with official framework icons
+### 🎯 Skills
+> Animated skill orbs, progress bars, and framework icons
 
-### 5. **AI Chatbot**
-- ChatGPT-like smooth text streaming
-- Comprehensive knowledge about portfolio owner
-- Quick suggestion buttons
+### 🤖 AI Chatbot
+> Ask anything about my experience, skills, or projects
 
 ---
 
-## 🚀 Quick Start
+## 🔧 Local Development
 
-1. **Clone the repository**
-   ```bash
-   git clone https://github.com/vasistacv/Portfolio.git
-   ```
+```bash
+# Clone the repository
+git clone https://github.com/vasistacv/Portfolio.git
+cd Portfolio
 
-2. **Setup AI Chatbot (Optional)**
-   ```bash
-   # Copy the sample config file
-   cp assets/js/config.sample.js assets/js/config.js
-   
-   # Edit config.js and add your Groq API key
-   # Get free API key at: https://console.groq.com/keys
-   ```
+# For AI Chatbot functionality
+cp assets/js/config.sample.js assets/js/config.js
+# Add your Groq API key to config.js
 
-3. **Open in browser**
-   ```bash
-   cd Portfolio
-   # Open index.html in your browser
-   ```
-
-4. **For development**
-   - Use Live Server extension in VS Code
-   - Or any local development server
+# Open in browser
+# Use VS Code Live Server or any local server
+```
 
 ---
 
-## 📞 Contact
+## 🚀 Deployment
+
+This portfolio is deployed on **Vercel** with automatic deployments from the main branch.
+
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vasistacv/Portfolio)
+
+---
+
+## 📬 Contact
 
 <div align="center">
 
-| Platform | Link |
-|----------|------|
-| 📧 Email | [vasisthamanju796@gmail.com](mailto:vasisthamanju796@gmail.com) |
-| 💼 LinkedIn | [linkedin.com/in/vashistacv](https://linkedin.com/in/vashistacv) |
-| 🐙 GitHub | [github.com/vasistacv](https://github.com/vasistacv) |
-| 🌍 Location | Hyderabad, India (ISRO-NRSC) |
+| | |
+|:-:|:-:|
+| 📧 **Email** | vasisthamanju796@gmail.com |
+| 💼 **LinkedIn** | [linkedin.com/in/vashistacv](https://linkedin.com/in/vashistacv) |
+| 🐙 **GitHub** | [github.com/vasistacv](https://github.com/vasistacv) |
+| 📍 **Location** | ISRO-NRSC, Hyderabad, India |
 
 </div>
 
 ---
 
-## 📄 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
 <div align="center">
 
-**Made with ❤️ by Vashista C V**
+**Designed & Developed by Vashista C V**
 
-*Currently working at ISRO-NRSC, Hyderabad*
+*Project Student @ ISRO-NRSC, Hyderabad*
 
 </div>
