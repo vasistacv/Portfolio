@@ -1671,39 +1671,57 @@ body {
         gap: 1.5rem;
     }
 
-    /* FIX: Enable Floating Cards on Mobile (Tablet/Phone) */
+    /* FIX: Enable Floating Cards on Mobile (Tablet/Phone) - Keep floating style */
     .hero-image-wrapper {
-        margin-bottom: 2rem;
-        height: auto;
+        position: relative;
+        width: 320px;
+        height: 320px;
+        margin: 0 auto 2rem;
     }
 
     .floating-elements {
-        position: relative;
+        position: absolute;
         width: 100%;
-        margin-top: 1.5rem;
-        display: grid !important;
+        height: 100%;
+        top: 0;
+        left: 0;
+        display: block !important;
         /* Override display:none */
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
-        height: auto;
     }
 
     .floating-card {
         display: flex !important;
-        position: relative !important;
-        top: auto !important;
-        left: auto !important;
-        right: auto !important;
-        bottom: auto !important;
-        transform: none !important;
-        animation: none !important;
-        width: 100%;
-        margin: 0;
-        justify-content: center;
-        padding: 0.8rem;
-        background: white;
-        border: 1px solid rgba(99, 102, 241, 0.1);
-        box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+        position: absolute !important;
+        animation: floatCard 3s ease-in-out infinite !important;
+        padding: 0.6rem 0.9rem;
+        font-size: 0.8rem;
+    }
+
+    .floating-card-icon {
+        width: 32px;
+        height: 32px;
+        font-size: 0.9rem;
+    }
+
+    /* Adjust positions for mobile screen */
+    .floating-card.card-1 {
+        top: 5%;
+        right: -10px;
+    }
+
+    .floating-card.card-2 {
+        top: 45%;
+        left: -15px;
+    }
+
+    .floating-card.card-3 {
+        bottom: 5%;
+        right: -10px;
+    }
+
+    .floating-card.card-4 {
+        top: 20%;
+        left: -20px;
     }
 
     /* FIX: Disable problematic animations on mobile */
