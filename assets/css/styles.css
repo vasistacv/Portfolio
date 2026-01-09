@@ -1674,11 +1674,25 @@ body {
     }
 
     /* FIX: Enable Floating Cards on Mobile (Tablet/Phone) - Keep floating style */
+    .hero-visual {
+        overflow: visible;
+        max-width: 100%;
+        padding: 3rem 0;
+        /* Add vertical padding to prevent ring cutoff */
+    }
+
     .hero-image-wrapper {
         position: relative;
         width: 320px;
         height: 320px;
         margin: 0 auto 2rem;
+        overflow: visible;
+        /* Allow ring to show fully */
+    }
+
+    .hero-image-ring {
+        width: 380px;
+        height: 380px;
     }
 
     .floating-elements {
@@ -1696,34 +1710,44 @@ body {
         position: absolute !important;
         animation: floatCard 3s ease-in-out infinite !important;
         padding: 0.6rem 0.9rem;
-        font-size: 0.8rem;
+        font-size: 0.75rem;
+        max-width: 160px;
+        /* Prevent cards from being too wide */
     }
 
     .floating-card-icon {
-        width: 32px;
-        height: 32px;
-        font-size: 0.9rem;
+        width: 28px;
+        height: 28px;
+        font-size: 0.85rem;
     }
 
-    /* Adjust positions for mobile screen - moved further out */
+    .floating-card span {
+        font-size: 0.75rem;
+    }
+
+    /* Adjust positions for mobile screen - MUCH FURTHER from photo */
     .floating-card.card-1 {
-        top: 8%;
-        right: -35px;
+        top: 5%;
+        right: -60px;
+        /* Much further right */
     }
 
     .floating-card.card-2 {
         top: 50%;
-        left: -40px;
+        left: -65px;
+        /* Much further left */
     }
 
     .floating-card.card-3 {
-        bottom: 8%;
-        right: -35px;
+        bottom: 5%;
+        right: -60px;
+        /* Much further right */
     }
 
     .floating-card.card-4 {
-        top: 25%;
-        left: -45px;
+        top: 22%;
+        left: -70px;
+        /* Much further left */
     }
 
     /* FIX: Disable problematic animations on mobile */
@@ -1735,11 +1759,7 @@ body {
         transform: none !important;
     }
 
-    /* FIX: Prevent right-side overflow on mobile */
-    * {
-        max-width: 100%;
-    }
-
+    /* FIX: Prevent right-side overflow on mobile - but allow hero ring */
     .section-container,
     .hero-container,
     .projects-section,
@@ -1756,7 +1776,7 @@ body {
 
     /* Fix any absolute positioned elements */
     .floating-card {
-        max-width: 180px;
+        max-width: 160px;
         /* Prevent cards from being too wide */
     }
 }
