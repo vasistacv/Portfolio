@@ -1703,25 +1703,25 @@ body {
         font-size: 0.9rem;
     }
 
-    /* Adjust positions for mobile screen */
+    /* Adjust positions for mobile screen - moved further out */
     .floating-card.card-1 {
-        top: 5%;
-        right: -10px;
+        top: 8%;
+        right: -35px;
     }
 
     .floating-card.card-2 {
-        top: 45%;
-        left: -15px;
+        top: 50%;
+        left: -40px;
     }
 
     .floating-card.card-3 {
-        bottom: 5%;
-        right: -10px;
+        bottom: 8%;
+        right: -35px;
     }
 
     .floating-card.card-4 {
-        top: 20%;
-        left: -20px;
+        top: 25%;
+        left: -45px;
     }
 
     /* FIX: Disable problematic animations on mobile */
