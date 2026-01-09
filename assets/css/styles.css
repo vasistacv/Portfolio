@@ -40,10 +40,15 @@
     --shadow-xl: 0 25px 60px rgba(99, 102, 241, 0.25);
     --shadow-glow: 0 0 60px rgba(99, 102, 241, 0.4);
 
-    /* Transitions */
+    /* Transitions - Enterprise-level smooth easing */
     --ease-premium: cubic-bezier(0.4, 0, 0.2, 1);
     --ease-bounce: cubic-bezier(0.68, -0.55, 0.265, 1.55);
     --ease-elastic: cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    --ease-smooth: cubic-bezier(0.25, 0.46, 0.45, 0.94);
+    --ease-butter: cubic-bezier(0.33, 1, 0.68, 1);
+
+    /* Performance optimization */
+    --gpu-acceleration: translateZ(0);
 }
 
 *,
@@ -58,6 +63,29 @@ html {
     scroll-behavior: smooth;
     scroll-padding-top: 100px;
     -webkit-overflow-scrolling: touch;
+    /* Enterprise-level smooth scrolling */
+    scrollbar-width: thin;
+    scrollbar-color: rgba(99, 102, 241, 0.3) transparent;
+}
+
+/* Custom scrollbar for webkit browsers */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: linear-gradient(180deg, rgba(99, 102, 241, 0.4), rgba(139, 92, 246, 0.4));
+    border-radius: 10px;
+    transition: background 0.3s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(180deg, rgba(99, 102, 241, 0.6), rgba(139, 92, 246, 0.6));
 }
 
 body {
@@ -70,6 +98,27 @@ body {
     -moz-osx-font-smoothing: grayscale;
     max-width: 100vw;
     position: relative;
+    /* Hardware acceleration for smooth performance */
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
+    will-change: scroll-position;
+}
+
+/* Smooth transitions for all interactive elements */
+* {
+    -webkit-tap-highlight-color: transparent;
+    -webkit-touch-callout: none;
+}
+
+a,
+button,
+.btn,
+.card,
+img {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    transform: translateZ(0);
+    -webkit-transform: translateZ(0);
 }
 
 /* ===== ULTRA PREMIUM BACKGROUNDS ===== */
