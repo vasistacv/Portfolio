@@ -5,16 +5,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description"
-        content="Vashista C V - ISRO Project Student, AI/ML Engineer & Cybersecurity Specialist. Explore cutting-edge projects in satellite technology, machine learning, and security.">
+        content="Vashista C V - ISRO-NRSC Alumni, AI/ML Engineer & Cybersecurity Specialist. Explore cutting-edge projects in satellite technology, machine learning, and security.">
     <meta name="keywords"
         content="Vashista CV, ISRO, NRSC, AI Developer, Machine Learning, Cybersecurity, Remote Sensing, Space Technology">
     <meta name="author" content="Vashista C V">
-    <meta property="og:title" content="Vashista C V | ISRO Project Student & AI/ML Engineer">
+    <meta property="og:title" content="Vashista C V | ISRO-NRSC Alumni & AI/ML Engineer">
     <meta property="og:description"
-        content="Pioneering developer at ISRO-NRSC specializing in AI/ML, Remote Sensing, and Cybersecurity">
+        content="Former Project Student at ISRO-NRSC specializing in AI/ML, Remote Sensing, and Cybersecurity">
     <meta property="og:type" content="website">
 
-    <title>Vashista C V | ISRO Project Student & AI/ML Engineer</title>
+    <title>Vashista C V | ISRO-NRSC Alumni & AI/ML Engineer</title>
 
     <!-- Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-VZ2Y082VEE"></script>
@@ -29,7 +29,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
-        href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&family=Outfit:wght@300;400;500;600;700;800;900&display=swap"
         rel="stylesheet">
 
     <!-- Icons -->
@@ -41,18 +41,31 @@
 </head>
 
 <body>
-    <!-- Premium Background Effects -->
-    <div class="bg-mesh"></div>
-    <div class="aurora-bg"></div>
+    <!-- Particle Canvas -->
+    <canvas id="particleCanvas"></canvas>
+
+    <!-- Matrix Rain Canvas -->
+    <canvas id="matrixCanvas"></canvas>
+
+    <!-- Scan Line Overlay -->
+    <div class="scan-lines"></div>
+
+    <!-- Grid Overlay -->
     <div class="grid-overlay"></div>
 
+    <!-- Cursor Follower -->
+    <div class="cursor-follower"></div>
+    <div class="cursor-dot"></div>
+
     <!-- Page Loader -->
-    <div class="page-loader">
+    <div class="page-loader" id="pageLoader">
         <div class="loader-content">
-            <div class="loader-logo">VC</div>
+            <div class="loader-glitch" data-text="VC">VC</div>
+            <div class="loader-text">INITIALIZING SYSTEM...</div>
             <div class="loader-bar">
                 <div class="loader-progress"></div>
             </div>
+            <div class="loader-percentage">0%</div>
         </div>
     </div>
 
@@ -60,24 +73,29 @@
     <nav class="navbar" id="navbar">
         <div class="navbar-container">
             <a href="#" class="navbar-logo">
-                <div class="logo-icon">VC</div>
-                <span class="logo-text">Vashista</span>
+                <div class="logo-icon">
+                    <span class="logo-icon-text">VC</span>
+                    <div class="logo-pulse"></div>
+                </div>
+                <span class="logo-text">VASHISTA</span>
             </a>
 
-            <ul class="navbar-menu">
-                <li><a href="#home" class="active">Home</a></li>
-                <li><a href="#experience">Experience</a></li>
-                <li><a href="#projects">Projects</a></li>
-                <li><a href="#skills">Skills</a></li>
-                <li><a href="#achievements">Achievements</a></li>
-                <li><a href="#contact">Contact</a></li>
+            <ul class="navbar-menu" id="navMenu">
+                <li><a href="#home" class="active"><span class="nav-indicator"></span>Home</a></li>
+                <li><a href="#experience"><span class="nav-indicator"></span>Experience</a></li>
+                <li><a href="#projects"><span class="nav-indicator"></span>Projects</a></li>
+                <li><a href="#skills"><span class="nav-indicator"></span>Skills</a></li>
+                <li><a href="#achievements"><span class="nav-indicator"></span>Achievements</a></li>
+                <li><a href="#contact"><span class="nav-indicator"></span>Contact</a></li>
             </ul>
 
             <a href="assets/documents/Vashista_C_V_CV.pdf" download class="navbar-cta">
-                <i class="fas fa-download"></i> Resume
+                <i class="fas fa-download"></i>
+                <span>Resume</span>
+                <div class="cta-glow"></div>
             </a>
 
-            <div class="menu-toggle">
+            <div class="menu-toggle" id="menuToggle">
                 <span></span>
                 <span></span>
                 <span></span>
@@ -91,59 +109,68 @@
             <div class="hero-container">
                 <div class="hero-content">
                     <div class="hero-badge hero-badge-isro">
-                        <span class="hero-badge-icon"></span>
-                        <i class="fas fa-satellite"></i>&nbsp; Currently at ISRO-NRSC
+                        <span class="badge-pulse"></span>
+                        <i class="fas fa-satellite"></i>&nbsp; ISRO-NRSC Alumni
                     </div>
 
                     <h1 class="hero-title">
                         <span class="hero-title-line">Hi, I'm</span>
-                        <span class="hero-title-line gradient-text">Vashista C V</span>
+                        <span class="hero-title-line glitch-text" data-text="Vashista C V">Vashista C V</span>
                     </h1>
 
+                    <div class="typing-container">
+                        <span class="typing-prefix">></span>
+                        <span class="typing-text" id="typingText"></span>
+                        <span class="typing-cursor">|</span>
+                    </div>
+
                     <p class="hero-subtitle">
-                        Project Student at <strong>ISRO-NRSC</strong> working on satellite imagery & remote sensing.
+                        Former Project Student at <strong>ISRO-NRSC</strong> with expertise in satellite imagery & remote sensing.
                         Specializing in AI/ML, Cybersecurity, and cutting-edge space technology applications.
                     </p>
 
                     <div class="hero-meta">
-                        <div class="hero-meta-item isro">
+                        <div class="hero-meta-item isro-alumni">
                             <i class="fas fa-satellite-dish"></i>
-                            ISRO-NRSC
+                            <span>ISRO-NRSC Alumni</span>
                         </div>
                         <div class="hero-meta-item">
                             <i class="fas fa-graduation-cap"></i>
-                            B.E. CSE
+                            <span>B.E. CSE</span>
                         </div>
                         <div class="hero-meta-item">
                             <i class="fas fa-map-marker-alt"></i>
-                            Hyderabad
+                            <span>India</span>
                         </div>
                         <div class="hero-meta-item">
                             <i class="fas fa-trophy"></i>
-                            Published Author
+                            <span>Published Author</span>
                         </div>
                     </div>
 
                     <div class="hero-actions">
                         <a href="#projects" class="btn btn-primary">
-                            View My Work
+                            <span class="btn-text">View My Work</span>
                             <svg class="btn-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor"
                                 stroke-width="2">
                                 <path d="M5 12h14M12 5l7 7-7 7" />
                             </svg>
+                            <div class="btn-glow"></div>
                         </a>
                         <a href="#contact" class="btn btn-secondary">
                             <i class="fas fa-paper-plane"></i>
-                            Get In Touch
+                            <span class="btn-text">Get In Touch</span>
                         </a>
                     </div>
                 </div>
 
                 <div class="hero-visual">
                     <div class="hero-image-wrapper">
-                        <div class="hero-image-bg"></div>
+                        <div class="hero-hex-grid"></div>
                         <div class="hero-image-ring"></div>
-                        <img src="assets/images/port_photo1.jpeg" alt="Vashista C V - ISRO Project Student"
+                        <div class="hero-image-ring ring-2"></div>
+                        <div class="hero-image-ring ring-3"></div>
+                        <img src="assets/images/port_photo1.jpeg" alt="Vashista C V - AI/ML Engineer"
                             class="hero-image">
 
                         <div class="floating-elements">
@@ -175,15 +202,21 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Scroll Indicator -->
+            <div class="scroll-indicator">
+                <div class="scroll-line"></div>
+                <span>SCROLL</span>
+            </div>
         </section>
 
-        <!-- Experience Section - Ultra Premium -->
+        <!-- Experience Section -->
         <section class="section experience-section" id="experience">
             <div class="section-container">
                 <div class="section-header reveal">
                     <span class="section-label">
                         <i class="fas fa-rocket"></i>
-                        Career Odyssey
+                        <span>CAREER_ODYSSEY</span>
                     </span>
                     <h2 class="section-title">Professional <span class="gradient-text">Experience</span></h2>
                     <p class="section-description">
@@ -192,12 +225,13 @@
                     </p>
                 </div>
 
-                <!-- Featured ISRO Card -->
+                <!-- Featured ISRO Card - COMPLETED -->
                 <div class="experience-featured reveal">
                     <div class="featured-glow"></div>
+                    <div class="featured-scan-line"></div>
                     <div class="featured-content">
-                        <div class="featured-badge">
-                            <i class="fas fa-star"></i> Current Position
+                        <div class="featured-badge completed">
+                            <i class="fas fa-check-circle"></i> Internship Completed
                         </div>
                         <div class="featured-header">
                             <div class="featured-logo">
@@ -205,7 +239,7 @@
                             </div>
                             <div class="featured-info">
                                 <span class="featured-date">
-                                    <i class="fas fa-calendar-alt"></i> September 2025 – Present
+                                    <i class="fas fa-calendar-alt"></i> September 2025 – February 2026
                                 </span>
                                 <h3 class="featured-title">Project Student</h3>
                                 <p class="featured-company">
@@ -218,9 +252,9 @@
                         </div>
                         <div class="featured-body">
                             <p class="featured-summary">
-                                Contributing to India's space program at the prestigious National Remote Sensing Centre
-                                under ISRO. Working on cutting-edge satellite technology and remote sensing
-                                applications.
+                                Successfully completed project work at India's prestigious National Remote Sensing Centre
+                                under ISRO. Contributed to cutting-edge satellite technology and remote sensing
+                                applications including deep learning-based rainfall prediction models.
                             </p>
                             <div class="featured-highlights">
                                 <div class="highlight-item">
@@ -331,22 +365,22 @@
                 <!-- Stats Bar -->
                 <div class="experience-stats reveal">
                     <div class="stat-item">
-                        <div class="stat-value">5+</div>
+                        <div class="stat-value" data-target="5">0</div>
                         <div class="stat-label">Internships</div>
                     </div>
                     <div class="stat-divider"></div>
                     <div class="stat-item">
-                        <div class="stat-value">1.5+</div>
+                        <div class="stat-value">2+</div>
                         <div class="stat-label">Years Experience</div>
                     </div>
                     <div class="stat-divider"></div>
                     <div class="stat-item">
                         <div class="stat-value">ISRO</div>
-                        <div class="stat-label">Current Org</div>
+                        <div class="stat-label">Former Org</div>
                     </div>
                     <div class="stat-divider"></div>
                     <div class="stat-item">
-                        <div class="stat-value">10+</div>
+                        <div class="stat-value" data-target="10">0</div>
                         <div class="stat-label">Projects</div>
                     </div>
                 </div>
@@ -365,7 +399,7 @@
                 <div class="section-header reveal">
                     <span class="section-label">
                         <i class="fas fa-code-branch"></i>
-                        Innovation Lab
+                        <span>INNOVATION_LAB</span>
                     </span>
                     <h2 class="section-title">Featured <span class="gradient-text">Projects</span></h2>
                     <p class="section-description">
@@ -391,14 +425,14 @@
                     </div>
                     <div class="project-hero-content">
                         <div class="project-status">
-                            <span class="status-live"><i class="fas fa-circle"></i> Active Development</span>
-                            <span class="status-date">2025 – Present</span>
+                            <span class="status-completed"><i class="fas fa-check-circle"></i> Completed</span>
+                            <span class="status-date">2025 – 2026</span>
                         </div>
                         <h3 class="project-hero-title">Deep Spatio-Temporal 3D-CNN for Rainfall Prediction</h3>
                         <p class="project-hero-desc">
                             Architected deep learning model integrating satellite NetCDF climate data with ground
-                            observations for rainfall prediction. Implementing advanced spatio-temporal convolution
-                            layers for pattern extraction and improving forecast accuracy for meteorological
+                            observations for rainfall prediction. Implemented advanced spatio-temporal convolution
+                            layers for pattern extraction and improved forecast accuracy for meteorological
                             applications.
                         </p>
                         <div class="project-hero-tech">
@@ -418,8 +452,8 @@
                                 <div class="metric-label">CNN Architecture</div>
                             </div>
                             <div class="metric">
-                                <div class="metric-value">Satellite</div>
-                                <div class="metric-label">Data Source</div>
+                                <div class="metric-value">ISRO</div>
+                                <div class="metric-label">Built At</div>
                             </div>
                         </div>
                     </div>
@@ -607,7 +641,7 @@
             </div>
         </section>
 
-        <!-- Skills Section - Immersive Galaxy -->
+        <!-- Skills Section -->
         <section class="section skills-section" id="skills">
             <div class="skills-bg-pattern"></div>
             <div class="skills-floating-shapes">
@@ -620,7 +654,7 @@
                 <div class="section-header reveal">
                     <span class="section-label">
                         <i class="fas fa-layer-group"></i>
-                        Technical Arsenal
+                        <span>TECH_ARSENAL</span>
                     </span>
                     <h2 class="section-title">Skills & <span class="gradient-text">Expertise</span></h2>
                     <p class="section-description">
@@ -904,12 +938,12 @@
         </section>
 
         <!-- Achievements Section -->
-        <section class="section" id="achievements" style="background: var(--bg-secondary);">
+        <section class="section achievements-section" id="achievements">
             <div class="section-container">
                 <div class="section-header reveal">
                     <span class="section-label">
                         <i class="fas fa-award"></i>
-                        Recognition
+                        <span>RECOGNITION</span>
                     </span>
                     <h2 class="section-title">Achievements & <span class="gradient-text">Publications</span></h2>
                     <p class="section-description">
@@ -934,8 +968,8 @@
                                     target="_blank" class="achievement-link">
                                     <i class="fas fa-external-link-alt"></i> View Paper
                                 </a>
-                                <a href="Privacy Prserving Voting System Using Elliptic Curve Cryptography.pdf" download
-                                    class="achievement-link">
+                                <a href="assets/documents/Privacy Prserving Voting System Using Elliptic Curve Cryptography.pdf"
+                                    download class="achievement-link">
                                     <i class="fas fa-download"></i> Download
                                 </a>
                             </div>
@@ -965,12 +999,12 @@
         </section>
 
         <!-- Contact Section -->
-        <section class="section" id="contact">
+        <section class="section contact-section" id="contact">
             <div class="section-container">
                 <div class="section-header reveal">
                     <span class="section-label">
                         <i class="fas fa-envelope"></i>
-                        Get In Touch
+                        <span>CONNECT</span>
                     </span>
                     <h2 class="section-title">Let's <span class="gradient-text">Connect</span></h2>
                     <p class="section-description">
@@ -980,6 +1014,7 @@
 
                 <div class="contact-wrapper reveal">
                     <div class="contact-info">
+                        <div class="contact-info-glow"></div>
                         <h3>Contact Information</h3>
                         <p>Feel free to reach out through any of these channels. I typically respond within 24 hours.
                         </p>
@@ -1000,8 +1035,8 @@
                                     <i class="fas fa-map-marker-alt"></i>
                                 </div>
                                 <div class="contact-item-text">
-                                    <h4>Current Location</h4>
-                                    <p>Hyderabad, Telangana, India</p>
+                                    <h4>Location</h4>
+                                    <p>India</p>
                                 </div>
                             </div>
 
@@ -1010,7 +1045,7 @@
                                     <i class="fas fa-building"></i>
                                 </div>
                                 <div class="contact-item-text">
-                                    <h4>Organization</h4>
+                                    <h4>Former Organization</h4>
                                     <p>ISRO-NRSC</p>
                                 </div>
                             </div>
@@ -1032,13 +1067,14 @@
                     </div>
 
                     <form class="contact-form" action="https://formsubmit.co/vasisthamanju796@gmail.com" method="POST">
-                        <input type="hidden" name="_next" value="https://vashistacvportfolio.netlify.app/#contact">
+                        <input type="hidden" name="_next" value="https://portfolio-vasistacv.vercel.app/#contact">
                         <input type="hidden" name="_subject" value="New Portfolio Contact!">
                         <input type="hidden" name="_template" value="table">
 
                         <div class="form-group">
                             <label class="form-label" for="name">Your Name</label>
-                            <input type="text" id="name" name="name" class="form-input" placeholder="John Doe" required>
+                            <input type="text" id="name" name="name" class="form-input" placeholder="John Doe"
+                                required>
                         </div>
 
                         <div class="form-group">
@@ -1053,8 +1089,10 @@
                                 placeholder="Tell me about your project or opportunity..." required></textarea>
                         </div>
 
-                        <button type="submit" class="form-submit">
-                            <i class="fas fa-paper-plane"></i> Send Message
+                        <button type="submit" class="form-submit" id="submitBtn">
+                            <i class="fas fa-paper-plane"></i>
+                            <span>Send Message</span>
+                            <div class="btn-glow"></div>
                         </button>
                     </form>
                 </div>
@@ -1066,7 +1104,9 @@
     <footer class="footer">
         <div class="footer-container">
             <div class="footer-top">
-                <div class="footer-logo">Vashista C V</div>
+                <div class="footer-logo">
+                    <span class="footer-logo-text">VASHISTA C V</span>
+                </div>
                 <ul class="footer-nav">
                     <li><a href="#home">Home</a></li>
                     <li><a href="#experience">Experience</a></li>
@@ -1076,7 +1116,7 @@
                 </ul>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2025 Vashista C V | ISRO-NRSC Project Student | All Rights Reserved</p>
+                <p>&copy; 2026 Vashista C V | ISRO-NRSC Alumni | All Rights Reserved</p>
             </div>
         </div>
     </footer>
@@ -1137,6 +1177,7 @@
     <script src="assets/js/config.js"></script>
     <script src="assets/js/script.js"></script>
     <script src="assets/js/chatbot.js"></script>
+
 </body>
 
 </html>
