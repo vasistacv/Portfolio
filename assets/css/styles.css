@@ -26,9 +26,9 @@
     --bg-glass: rgba(7, 8, 15, 0.78);
 
     /* === GAMING TEXT === */
-    --text-primary: #e4e7ec;
-    --text-secondary: #7e839a;
-    --text-muted: #4a4e64;
+    --text-primary: #f0f2f5;
+    --text-secondary: #b0b5c9;
+    --text-muted: #6b7194;
 
     /* === NEON GRADIENTS === */
     --gradient-hero: linear-gradient(135deg, #00f0ff 0%, #7b2fff 50%, #ff2d75 100%);
@@ -453,7 +453,7 @@ body {
     align-items: center;
     gap: 0.6rem;
     padding: 0.6rem 1.2rem 0.6rem 0.6rem;
-    background: white;
+    background: var(--bg-card);
     border: 1px solid rgba(0, 240, 255, 0.2);
     border-radius: 100px;
     font-size: 0.9rem;
@@ -479,13 +479,13 @@ body {
     content: '';
     width: 10px;
     height: 10px;
-    background: white;
+    background: var(--bg-card);
     border-radius: 50%;
     animation: pulse 2s ease-in-out infinite;
 }
 
 .hero-badge-isro {
-    background: linear-gradient(135deg, #ffd700 0%, #cc9900 100%);
+    background: linear-gradient(135deg, #ffd700 0%, var(--accent-gold) 100%);
     color: var(--text-primary);
     border: none;
     font-weight: 600;
@@ -556,7 +556,7 @@ body {
     align-items: center;
     gap: 0.5rem;
     padding: 0.6rem 1.2rem;
-    background: white;
+    background: var(--bg-card);
     border-radius: 100px;
     font-size: 0.9rem;
     font-weight: 500;
@@ -579,11 +579,11 @@ body {
 .hero-meta-item.isro {
     background: linear-gradient(135deg, #141530 0%, #fde68a 100%);
     border-color: #ffd700;
-    color: #92400e;
+    color: var(--accent-gold);
 }
 
 .hero-meta-item.isro i {
-    color: #cc9900;
+    color: var(--accent-gold);
 }
 
 /* Hero Actions */
@@ -630,7 +630,7 @@ body {
 }
 
 .btn-secondary {
-    background: white;
+    background: var(--bg-card);
     color: var(--text-primary);
     border: 2px solid rgba(0, 240, 255, 0.2);
     box-shadow: var(--shadow-sm);
@@ -749,7 +749,7 @@ body {
 
 .floating-card {
     position: absolute;
-    background: white;
+    background: var(--bg-card);
     padding: 1rem 1.5rem;
     border-radius: 16px;
     box-shadow: var(--shadow-xl);
@@ -816,7 +816,7 @@ body {
 
 .floating-card.card-4 .floating-card-icon {
     background: rgba(255, 215, 0, 0.2);
-    color: #cc9900;
+    color: var(--accent-gold);
 }
 
 @keyframes floatCard {
@@ -975,7 +975,7 @@ body {
 }
 
 .timeline-content {
-    background: white;
+    background: var(--bg-card);
     padding: 2rem 2.5rem;
     border-radius: 24px;
     box-shadow: var(--shadow-lg);
@@ -1028,7 +1028,7 @@ body {
 }
 
 .timeline-content.isro-special .timeline-date {
-    background: linear-gradient(135deg, #ffd700, #cc9900);
+    background: linear-gradient(135deg, #ffd700, var(--accent-gold));
     color: var(--text-primary);
 }
 
@@ -1060,7 +1060,7 @@ body {
 }
 
 .project-card {
-    background: white;
+    background: var(--bg-card);
     border-radius: 28px;
     overflow: hidden;
     box-shadow: var(--shadow-lg);
@@ -1126,7 +1126,7 @@ body {
     top: 1.25rem;
     left: 1.25rem;
     padding: 0.5rem 1.25rem;
-    background: white;
+    background: var(--bg-card);
     color: var(--primary);
     border-radius: 100px;
     font-size: 0.8rem;
@@ -1178,7 +1178,7 @@ body {
 }
 
 .skill-card {
-    background: white;
+    background: var(--bg-card);
     padding: 2.5rem 1.5rem;
     border-radius: 24px;
     text-align: center;
@@ -1253,7 +1253,7 @@ body {
 }
 
 .achievement-card {
-    background: white;
+    background: var(--bg-card);
     padding: 3rem;
     border-radius: 28px;
     box-shadow: var(--shadow-lg);
@@ -1430,13 +1430,13 @@ body {
 }
 
 .social-link:hover {
-    background: white;
+    background: var(--bg-card);
     color: var(--primary);
     transform: translateY(-5px);
 }
 
 .contact-form {
-    background: white;
+    background: var(--bg-card);
     padding: 3.5rem;
     border-radius: 32px;
     box-shadow: var(--shadow-xl);
@@ -1471,7 +1471,7 @@ body {
 .form-input:focus,
 .form-textarea:focus {
     outline: none;
-    background: white;
+    background: var(--bg-card);
     border-color: var(--primary);
     box-shadow: 0 0 0 5px rgba(0, 240, 255, 0.1);
 }
@@ -1961,7 +1961,7 @@ body {
 .featured-glow {
     position: absolute;
     inset: -2px;
-    background: linear-gradient(135deg, #ffd700 0%, #ffcc00 25%, #ffd700 50%, #cc9900 75%, #ffd700 100%);
+    background: linear-gradient(135deg, #ffd700 0%, #ffcc00 25%, #ffd700 50%, var(--accent-gold) 75%, #ffd700 100%);
     background-size: 400% 400%;
     animation: glowRotate 5s linear infinite;
     border-radius: 34px;
@@ -1995,7 +1995,7 @@ body {
     align-items: center;
     gap: 0.5rem;
     padding: 0.5rem 1rem;
-    background: linear-gradient(135deg, #ffd700, #cc9900);
+    background: linear-gradient(135deg, #ffd700, var(--accent-gold));
     color: var(--text-primary);
     border-radius: 100px;
     font-size: 0.8rem;
@@ -2016,7 +2016,7 @@ body {
 .featured-logo {
     width: 90px;
     height: 90px;
-    background: linear-gradient(135deg, #ffd700, #cc9900);
+    background: linear-gradient(135deg, #ffd700, var(--accent-gold));
     border-radius: 24px;
     display: flex;
     align-items: center;
@@ -2035,7 +2035,7 @@ body {
     display: inline-flex;
     align-items: center;
     gap: 0.5rem;
-    color: #92400e;
+    color: var(--accent-gold);
     font-weight: 600;
     font-size: 0.9rem;
     margin-bottom: 0.75rem;
@@ -2051,16 +2051,16 @@ body {
 
 .featured-company {
     font-size: 1.15rem;
-    color: #b45309;
+    color: var(--accent-orange);
     margin-bottom: 0.5rem;
 }
 
 .featured-company strong {
-    color: #92400e;
+    color: var(--accent-gold);
 }
 
 .featured-location {
-    color: #78716c;
+    color: var(--text-muted);
     font-size: 0.95rem;
 }
 
@@ -2091,7 +2091,7 @@ body {
     align-items: center;
     gap: 0.75rem;
     padding: 1rem 1.25rem;
-    background: white;
+    background: var(--bg-card);
     border-radius: 16px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
     border: 1px solid rgba(255, 215, 0, 0.15);
@@ -2112,7 +2112,7 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
-    color: #cc9900;
+    color: var(--accent-gold);
     font-size: 1.1rem;
     flex-shrink: 0;
 }
@@ -2134,7 +2134,7 @@ body {
 .exp-card {
     position: relative;
     border-radius: 24px;
-    background: white;
+    background: var(--bg-card);
     overflow: hidden;
     box-shadow: var(--shadow-lg);
     transition: all 0.4s var(--ease-bounce);
@@ -2280,7 +2280,7 @@ body {
     justify-content: center;
     gap: 3rem;
     padding: 2.5rem 3rem;
-    background: white;
+    background: var(--bg-card);
     border-radius: 24px;
     box-shadow: var(--shadow-xl);
     border: 1px solid rgba(0, 240, 255, 0.1);
@@ -2368,11 +2368,11 @@ body {
 
 .projects-section .section-label {
     background: linear-gradient(135deg, rgba(0, 240, 255, 0.3), rgba(123, 47, 255, 0.3));
-    color: #a5b4fc;
+    color: var(--primary-light);
 }
 
 .projects-section .section-description {
-    color: #94a3b8;
+    color: var(--text-secondary);
 }
 
 /* Background Orbs */
@@ -2499,7 +2499,7 @@ body {
     left: 50%;
     transform: translateX(-50%);
     padding: 0.5rem 1.25rem;
-    background: linear-gradient(135deg, #ffd700, #cc9900);
+    background: linear-gradient(135deg, #ffd700, var(--accent-gold));
     color: var(--text-primary);
     border-radius: 100px;
     font-size: 0.75rem;
@@ -2622,7 +2622,7 @@ body {
 }
 
 .status-date {
-    color: #64748b;
+    color: var(--text-muted);
     font-size: 0.85rem;
     font-weight: 500;
 }
@@ -2637,7 +2637,7 @@ body {
 }
 
 .project-hero-desc {
-    color: #94a3b8;
+    color: var(--text-secondary);
     font-size: 1rem;
     line-height: 1.8;
     margin-bottom: 1.5rem;
@@ -2653,7 +2653,7 @@ body {
 .project-hero-tech span {
     padding: 0.5rem 1rem;
     background: rgba(0, 240, 255, 0.15);
-    color: #a5b4fc;
+    color: var(--primary-light);
     border-radius: 100px;
     font-size: 0.8rem;
     font-weight: 600;
@@ -2683,7 +2683,7 @@ body {
 
 .metric-label {
     font-size: 0.75rem;
-    color: #64748b;
+    color: var(--text-muted);
     text-transform: uppercase;
     letter-spacing: 0.5px;
 }
@@ -2786,7 +2786,7 @@ body {
 
 .showcase-icon.blue {
     background: linear-gradient(135deg, rgba(59, 130, 246, 0.2), rgba(37, 99, 235, 0.15));
-    color: #3b82f6;
+    color: var(--primary);
 }
 
 .showcase-icon.rose {
@@ -2796,7 +2796,7 @@ body {
 
 .showcase-icon.orange {
     background: linear-gradient(135deg, rgba(249, 115, 22, 0.2), rgba(234, 88, 12, 0.15));
-    color: #f97316;
+    color: var(--accent-orange);
 }
 
 .showcase-meta {
@@ -2823,7 +2823,7 @@ body {
     align-items: center;
     gap: 0.4rem;
     padding: 0.35rem 0.8rem;
-    background: linear-gradient(135deg, #ffd700, #cc9900);
+    background: linear-gradient(135deg, #ffd700, var(--accent-gold));
     color: var(--text-primary);
     border-radius: 100px;
     font-size: 0.7rem;
@@ -2836,7 +2836,7 @@ body {
     gap: 0.4rem;
     padding: 0.35rem 0.8rem;
     background: rgba(0, 240, 255, 0.2);
-    color: #a5b4fc;
+    color: var(--primary-light);
     border-radius: 100px;
     font-size: 0.7rem;
     font-weight: 600;
@@ -2844,7 +2844,7 @@ body {
 
 .showcase-date {
     font-size: 0.75rem;
-    color: #64748b;
+    color: var(--text-muted);
     font-weight: 500;
 }
 
@@ -2859,7 +2859,7 @@ body {
 
 .showcase-desc {
     font-size: 0.9rem;
-    color: #94a3b8;
+    color: var(--text-secondary);
     line-height: 1.7;
     margin-bottom: 1.25rem;
 }
@@ -2874,7 +2874,7 @@ body {
 .showcase-tech span {
     padding: 0.35rem 0.75rem;
     background: rgba(255, 255, 255, 0.05);
-    color: #94a3b8;
+    color: var(--text-secondary);
     border-radius: 100px;
     font-size: 0.7rem;
     font-weight: 500;
@@ -2911,7 +2911,7 @@ body {
 
 .showcase-btn.secondary {
     background: rgba(255, 255, 255, 0.05);
-    color: #a5b4fc;
+    color: var(--primary-light);
     border: 1px solid rgba(0, 240, 255, 0.3);
 }
 
@@ -2954,12 +2954,12 @@ body {
 .mini-metric .value {
     font-family: 'Space Grotesk', sans-serif;
     font-weight: 700;
-    color: #a5b4fc;
+    color: var(--primary-light);
     font-size: 0.9rem;
 }
 
 .mini-metric .label {
-    color: #64748b;
+    color: var(--text-muted);
     font-size: 0.75rem;
 }
 
@@ -3141,7 +3141,7 @@ body {
 
 /* Skill Category Cards */
 .skill-category {
-    background: white;
+    background: var(--bg-card);
     border-radius: 28px;
     padding: 2rem;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
@@ -3175,7 +3175,7 @@ body {
 /* Core Category - Full Width Featured */
 .skill-category-core {
     grid-column: span 2;
-    background: linear-gradient(135deg, #141530 0%, #0a0b15 50%, #fff 100%);
+    background: linear-gradient(135deg, #141530 0%, #0a0b15 50%, #0c0d18 100%);
     border-color: rgba(255, 215, 0, 0.2);
 }
 
@@ -3228,7 +3228,7 @@ body {
 .category-icon {
     width: 60px;
     height: 60px;
-    background: linear-gradient(135deg, #ffd700, #cc9900);
+    background: linear-gradient(135deg, #ffd700, var(--accent-gold));
     border-radius: 18px;
     display: flex;
     align-items: center;
@@ -3282,7 +3282,7 @@ body {
 
 .skill-orb {
     position: relative;
-    background: white;
+    background: var(--bg-card);
     border-radius: 20px;
     padding: 1.5rem 1rem;
     text-align: center;
@@ -3337,7 +3337,7 @@ body {
     font-size: 2rem;
     margin-bottom: 0.75rem;
     display: block;
-    background: linear-gradient(135deg, #ffd700, #cc9900);
+    background: linear-gradient(135deg, #ffd700, var(--accent-gold));
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
@@ -3355,7 +3355,7 @@ body {
     display: inline-block;
     padding: 0.25rem 0.75rem;
     background: linear-gradient(135deg, rgba(255, 215, 0, 0.1), rgba(217, 119, 6, 0.1));
-    color: #b45309;
+    color: var(--accent-orange);
     border-radius: 100px;
     font-size: 0.7rem;
     font-weight: 600;
@@ -3364,7 +3364,7 @@ body {
 }
 
 .skill-orb.orb-expert .orb-level {
-    background: linear-gradient(135deg, #ffd700, #cc9900);
+    background: linear-gradient(135deg, #ffd700, var(--accent-gold));
     color: var(--text-primary);
 }
 
@@ -3468,7 +3468,7 @@ body {
 
 /* Tools Section */
 .skills-tools {
-    background: white;
+    background: var(--bg-card);
     border-radius: 28px;
     padding: 2.5rem;
     box-shadow: 0 10px 40px rgba(0, 0, 0, 0.06);
@@ -3502,7 +3502,7 @@ body {
     align-items: center;
     gap: 0.6rem;
     padding: 0.75rem 1.25rem;
-    background: linear-gradient(135deg, #0c0d18, #fff);
+    background: linear-gradient(135deg, #0c0d18, #141530);
     border: 1px solid rgba(0, 240, 255, 0.1);
     border-radius: 100px;
     transition: all 0.3s ease;
@@ -5877,3 +5877,6 @@ img[loading] {
     padding: 0.8rem 1rem;
     border-radius: 8px;
 }
+
+
+
