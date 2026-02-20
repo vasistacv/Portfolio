@@ -35,12 +35,21 @@
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 
+    <!-- Three.js for 3D WebGL VFX -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js" defer></script>
+    <!-- GSAP for Cinematic Animations -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js" defer></script>
+
     <!-- Stylesheets -->
     <link rel="stylesheet" href="assets/css/styles.css">
     <link rel="stylesheet" href="assets/css/chatbot.css">
 </head>
 
 <body>
+    <!-- 3D WebGL VFX Container -->
+    <div id="vfx3d"></div>
+
     <!-- Particle Canvas -->
     <canvas id="particleCanvas"></canvas>
 
@@ -125,7 +134,8 @@
                     </div>
 
                     <p class="hero-subtitle">
-                        Former Project Student at <strong>ISRO-NRSC</strong> with expertise in satellite imagery & remote sensing.
+                        Former Project Student at <strong>ISRO-NRSC</strong> with expertise in satellite imagery &
+                        remote sensing.
                         Specializing in AI/ML, Cybersecurity, and cutting-edge space technology applications.
                     </p>
 
@@ -252,7 +262,8 @@
                         </div>
                         <div class="featured-body">
                             <p class="featured-summary">
-                                Successfully completed project work at India's prestigious National Remote Sensing Centre
+                                Successfully completed project work at India's prestigious National Remote Sensing
+                                Centre
                                 under ISRO. Contributed to cutting-edge satellite technology and remote sensing
                                 applications including deep learning-based rainfall prediction models.
                             </p>
@@ -1073,8 +1084,7 @@
 
                         <div class="form-group">
                             <label class="form-label" for="name">Your Name</label>
-                            <input type="text" id="name" name="name" class="form-input" placeholder="John Doe"
-                                required>
+                            <input type="text" id="name" name="name" class="form-input" placeholder="John Doe" required>
                         </div>
 
                         <div class="form-group">
@@ -1176,6 +1186,7 @@
     <!-- Scripts -->
     <script src="assets/js/config.js"></script>
     <script src="assets/js/script.js"></script>
+    <script src="assets/js/vfx3d.js"></script>
     <script src="assets/js/chatbot.js"></script>
 
 </body>

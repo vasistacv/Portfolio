@@ -6757,3 +6757,117 @@ body.loaded .hero-visual {
 
 
 
+
+/* ============================================
+   THREE.JS 3D VFX CONTAINER
+   ============================================ */
+#vfx3d {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2 !important;
+    pointer-events: none;
+    opacity: 0.45;
+}
+
+#vfx3d canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* ===== CINEMATIC VFX ENHANCEMENTS ===== */
+#particleCanvas {
+    opacity: 0.4 !important;
+    mix-blend-mode: normal;
+}
+
+#matrixCanvas {
+    display: none !important;
+}
+
+/* ===== EXTRA CINEMATIC GLOW ON SECTIONS ===== */
+.hero::after {
+    content: '';
+    position: absolute;
+    top: 20%;
+    right: -10%;
+    width: 600px;
+    height: 600px;
+    background: radial-gradient(circle, rgba(240, 147, 251, 0.12) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: cinematicOrb 10s ease-in-out infinite;
+    filter: blur(60px);
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    bottom: -10%;
+    left: -5%;
+    width: 500px;
+    height: 500px;
+    background: radial-gradient(circle, rgba(102, 126, 234, 0.1) 0%, transparent 70%);
+    border-radius: 50%;
+    pointer-events: none;
+    animation: cinematicOrb 14s ease-in-out infinite reverse;
+    filter: blur(50px);
+    z-index: -1;
+}
+
+@keyframes cinematicOrb {
+    0%, 100% { transform: translate(0, 0) scale(1); opacity: 0.7; }
+    25% { transform: translate(30px, -40px) scale(1.1); opacity: 1; }
+    50% { transform: translate(-20px, 30px) scale(0.95); opacity: 0.8; }
+    75% { transform: translate(40px, 20px) scale(1.05); opacity: 0.9; }
+}
+
+/* ===== ENHANCED GLASS EFFECT ON CARDS ===== */
+.exp-card,
+.showcase-card,
+.achievement-card,
+.skill-category {
+    box-shadow: 
+        0 8px 32px rgba(108, 92, 231, 0.08),
+        0 0 0 1px rgba(108, 92, 231, 0.05),
+        inset 0 1px 0 rgba(255, 255, 255, 0.6) !important;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1) !important;
+}
+
+.exp-card:hover,
+.showcase-card:hover,
+.achievement-card:hover {
+    box-shadow:
+        0 20px 60px rgba(108, 92, 231, 0.15),
+        0 0 0 1px rgba(108, 92, 231, 0.1),
+        inset 0 1px 0 rgba(255, 255, 255, 0.8),
+        0 0 80px rgba(253, 121, 168, 0.05) !important;
+    transform: translateY(-8px) scale(1.01) !important;
+}
+
+/* ===== PREMIUM GLASSMORPHISM NAVBAR ===== */
+.navbar {
+    box-shadow: 0 4px 30px rgba(108, 92, 231, 0.06), inset 0 -1px 0 rgba(255, 255, 255, 0.5) !important;
+}
+
+/* ===== ANIMATED GRADIENT BORDER ON HERO BADGE ===== */
+.hero-badge {
+    position: relative;
+}
+
+.hero-badge::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    background: var(--gradient-holographic);
+    background-size: 400% 400%;
+    border-radius: inherit;
+    z-index: -1;
+    animation: holographicShimmer 4s ease-in-out infinite;
+    opacity: 0.5;
+}
