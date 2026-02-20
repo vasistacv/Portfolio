@@ -1,13 +1,14 @@
 /* ============================================
-   VASHISTA C V — INTERSTELLAR VFX ENGINE
-   Three.js 3D WebGL Effects — Movie Grade
-   Galaxy · Nebula · God Rays · Wormhole
+   VASHISTA C V — INTERSTELLAR VFX ENGINE v10.0
+   Three.js 3D WebGL — Beyond Cinema Grade
+   Galaxy · Wormhole · God Rays · Black Hole
+   DNA Helix · Asteroid Belt · Shooting Stars
+   Plasma Fields · Energy Orbs · Nebula Storms
    ============================================ */
 
 (function () {
     'use strict';
 
-    // Wait for Three.js to load
     function initVFX3D() {
         if (typeof THREE === 'undefined') {
             setTimeout(initVFX3D, 100);
@@ -20,19 +21,19 @@
         const isMobile = window.innerWidth <= 768;
         let mouseX = 0, mouseY = 0;
         let targetMouseX = 0, targetMouseY = 0;
-        const W = window.innerWidth;
-        const H = window.innerHeight;
+        let W = window.innerWidth;
+        let H = window.innerHeight;
 
-        // ===== SCENE SETUP =====
+        // ===== RENDERER =====
         const scene = new THREE.Scene();
-        scene.fog = new THREE.FogExp2(0xf0e6ff, 0.0004);
+        scene.fog = new THREE.FogExp2(0xf0e6ff, 0.00025);
 
-        const camera = new THREE.PerspectiveCamera(60, W / H, 1, 5000);
-        camera.position.set(0, 0, 800);
+        const camera = new THREE.PerspectiveCamera(65, W / H, 1, 8000);
+        camera.position.set(0, 0, 1000);
 
         const renderer = new THREE.WebGLRenderer({
             alpha: true,
-            antialias: true,
+            antialias: !isMobile,
             powerPreference: 'high-performance'
         });
         renderer.setSize(W, H);
@@ -40,400 +41,713 @@
         renderer.setClearColor(0x000000, 0);
         container.appendChild(renderer.domElement);
 
-        // ===== GALAXY PARTICLE SYSTEM =====
-        const STAR_COUNT = isMobile ? 5000 : 15000;
-        const galaxyGeometry = new THREE.BufferGeometry();
-        const galaxyPositions = new Float32Array(STAR_COUNT * 3);
-        const galaxyColors = new Float32Array(STAR_COUNT * 3);
-        const galaxySizes = new Float32Array(STAR_COUNT);
-        const galaxySpeeds = new Float32Array(STAR_COUNT);
+        // ===== COLOR PALETTE =====
+        const colors = {
+            purple: new THREE.Color(0x6c5ce7),
+            pink: new THREE.Color(0xfd79a8),
+            lavender: new THREE.Color(0xa29bfe),
+            gold: new THREE.Color(0xfdcb6e),
+            teal: new THREE.Color(0x00cec9),
+            deepPurple: new THREE.Color(0x764ba2),
+            rose: new THREE.Color(0xe84393),
+            blue: new THREE.Color(0x667eea),
+            peach: new THREE.Color(0xfda085),
+            mint: new THREE.Color(0x55efc4),
+            coral: new THREE.Color(0xf093fb),
+            white: new THREE.Color(0xffffff),
+        };
+        const colorArray = Object.values(colors);
+        const pickColor = () => colorArray[Math.floor(Math.random() * colorArray.length)];
 
-        const colorPalette = [
-            new THREE.Color(0x667eea), // Blue-purple
-            new THREE.Color(0xf093fb), // Pink
-            new THREE.Color(0xfd79a8), // Hot pink
-            new THREE.Color(0xa29bfe), // Lavender
-            new THREE.Color(0xfdcb6e), // Gold
-            new THREE.Color(0x00cec9), // Teal
-            new THREE.Color(0x6c5ce7), // Deep purple
-            new THREE.Color(0xffeaa7), // Light gold
-        ];
+        // =============================================
+        // 1. MEGA SPIRAL GALAXY — 30,000 STARS
+        // =============================================
+        const STAR_COUNT = isMobile ? 8000 : 30000;
+        const galaxyGeo = new THREE.BufferGeometry();
+        const gPos = new Float32Array(STAR_COUNT * 3);
+        const gCol = new Float32Array(STAR_COUNT * 3);
+        const gSize = new Float32Array(STAR_COUNT);
 
         for (let i = 0; i < STAR_COUNT; i++) {
             const i3 = i * 3;
+            const radius = Math.random() * 2500;
+            const spinAngle = radius * 0.004;
+            const branchAngle = (i % 6) * ((2 * Math.PI) / 6);
+            const scatter = radius * 0.3;
 
-            // Spiral galaxy distribution
-            const radius = Math.random() * 2000;
-            const spinAngle = radius * 0.005;
-            const branchAngle = (i % 5) * ((2 * Math.PI) / 5);
+            gPos[i3] = Math.cos(branchAngle + spinAngle) * radius + (Math.random() - 0.5) * scatter;
+            gPos[i3 + 1] = (Math.random() - 0.5) * radius * 0.1;
+            gPos[i3 + 2] = Math.sin(branchAngle + spinAngle) * radius + (Math.random() - 0.5) * scatter;
 
-            const randomX = (Math.random() - 0.5) * radius * 0.4;
-            const randomY = (Math.random() - 0.5) * radius * 0.15;
-            const randomZ = (Math.random() - 0.5) * radius * 0.4;
+            const c = pickColor();
+            gCol[i3] = c.r;
+            gCol[i3 + 1] = c.g;
+            gCol[i3 + 2] = c.b;
 
-            galaxyPositions[i3] = Math.cos(branchAngle + spinAngle) * radius + randomX;
-            galaxyPositions[i3 + 1] = randomY;
-            galaxyPositions[i3 + 2] = Math.sin(branchAngle + spinAngle) * radius + randomZ;
-
-            // Colors from palette
-            const color = colorPalette[Math.floor(Math.random() * colorPalette.length)];
-            galaxyColors[i3] = color.r;
-            galaxyColors[i3 + 1] = color.g;
-            galaxyColors[i3 + 2] = color.b;
-
-            galaxySizes[i] = Math.random() * 3 + 0.5;
-            galaxySpeeds[i] = 0.0002 + Math.random() * 0.0008;
+            gSize[i] = Math.random() * 3 + 0.5;
         }
 
-        galaxyGeometry.setAttribute('position', new THREE.BufferAttribute(galaxyPositions, 3));
-        galaxyGeometry.setAttribute('color', new THREE.BufferAttribute(galaxyColors, 3));
-        galaxyGeometry.setAttribute('size', new THREE.BufferAttribute(galaxySizes, 1));
+        galaxyGeo.setAttribute('position', new THREE.BufferAttribute(gPos, 3));
+        galaxyGeo.setAttribute('color', new THREE.BufferAttribute(gCol, 3));
 
-        // Custom shader material for galaxy
-        const galaxyMaterial = new THREE.PointsMaterial({
-            size: 2.5,
+        const galaxy = new THREE.Points(galaxyGeo, new THREE.PointsMaterial({
+            size: 2,
             vertexColors: true,
             transparent: true,
-            opacity: 0.7,
+            opacity: 0.6,
             blending: THREE.AdditiveBlending,
             depthWrite: false,
             sizeAttenuation: true,
-        });
-
-        const galaxy = new THREE.Points(galaxyGeometry, galaxyMaterial);
+        }));
         scene.add(galaxy);
 
-        // ===== NEBULA CLOUDS =====
-        const nebulaCount = isMobile ? 3 : 8;
-        const nebulae = [];
-
-        for (let i = 0; i < nebulaCount; i++) {
-            const nebulaGeo = new THREE.SphereGeometry(100 + Math.random() * 200, 16, 16);
-            const nebulaMat = new THREE.MeshBasicMaterial({
-                color: colorPalette[Math.floor(Math.random() * colorPalette.length)],
-                transparent: true,
-                opacity: 0.015 + Math.random() * 0.025,
-                blending: THREE.AdditiveBlending,
-                depthWrite: false,
-            });
-            const nebula = new THREE.Mesh(nebulaGeo, nebulaMat);
-            nebula.position.set(
-                (Math.random() - 0.5) * 2000,
-                (Math.random() - 0.5) * 600,
-                (Math.random() - 0.5) * 2000
-            );
-            nebula.userData = {
-                speedX: (Math.random() - 0.5) * 0.2,
-                speedY: (Math.random() - 0.5) * 0.1,
-                pulseSpeed: 0.001 + Math.random() * 0.002,
-                baseScale: 0.8 + Math.random() * 0.5,
-            };
-            scene.add(nebula);
-            nebulae.push(nebula);
-        }
-
-        // ===== FLOATING HOLOGRAPHIC GEOMETRY =====
-        const floatingShapes = [];
-        const shapeCount = isMobile ? 4 : 10;
-
-        const holographicMaterial = (color) => new THREE.MeshBasicMaterial({
-            color: color,
-            transparent: true,
-            opacity: 0.08,
-            wireframe: true,
-            blending: THREE.AdditiveBlending,
-        });
-
-        const solidHolographic = (color) => new THREE.MeshBasicMaterial({
-            color: color,
-            transparent: true,
-            opacity: 0.03,
-            blending: THREE.AdditiveBlending,
-            side: THREE.DoubleSide,
-        });
-
-        for (let i = 0; i < shapeCount; i++) {
-            let geometry;
-            const shapeType = i % 5;
-            switch (shapeType) {
-                case 0: geometry = new THREE.IcosahedronGeometry(15 + Math.random() * 30, 1); break;
-                case 1: geometry = new THREE.OctahedronGeometry(15 + Math.random() * 25, 0); break;
-                case 2: geometry = new THREE.TorusKnotGeometry(12 + Math.random() * 15, 3, 64, 8); break;
-                case 3: geometry = new THREE.TetrahedronGeometry(15 + Math.random() * 25, 0); break;
-                case 4: geometry = new THREE.DodecahedronGeometry(12 + Math.random() * 20, 0); break;
-            }
-
-            const color = colorPalette[i % colorPalette.length];
-
-            // Wire version
-            const wireMesh = new THREE.Mesh(geometry, holographicMaterial(color));
-            // Solid fill version
-            const solidMesh = new THREE.Mesh(geometry, solidHolographic(color));
-
-            const group = new THREE.Group();
-            group.add(wireMesh);
-            group.add(solidMesh);
-
-            group.position.set(
-                (Math.random() - 0.5) * 1200,
-                (Math.random() - 0.5) * 600,
-                (Math.random() - 0.5) * 800
-            );
-
-            group.userData = {
-                rotSpeedX: (Math.random() - 0.5) * 0.01,
-                rotSpeedY: (Math.random() - 0.5) * 0.01,
-                rotSpeedZ: (Math.random() - 0.5) * 0.005,
-                floatSpeed: 0.0005 + Math.random() * 0.001,
-                floatAmp: 30 + Math.random() * 50,
-                baseY: group.position.y,
-            };
-
-            scene.add(group);
-            floatingShapes.push(group);
-        }
-
-        // ===== VOLUMETRIC LIGHT RAYS (GOD RAYS) =====
-        const rayCount = isMobile ? 3 : 6;
-        const godRays = [];
-
-        for (let i = 0; i < rayCount; i++) {
-            const rayGeo = new THREE.CylinderGeometry(0.5, 80 + Math.random() * 120, 1500, 8, 1, true);
-            const rayMat = new THREE.MeshBasicMaterial({
-                color: colorPalette[i % colorPalette.length],
-                transparent: true,
-                opacity: 0.008 + Math.random() * 0.012,
-                blending: THREE.AdditiveBlending,
-                depthWrite: false,
-                side: THREE.DoubleSide,
-            });
-
-            const ray = new THREE.Mesh(rayGeo, rayMat);
-            ray.position.set(
-                (Math.random() - 0.5) * 800,
-                -300 + Math.random() * 200,
-                -500 + Math.random() * 300
-            );
-            ray.rotation.x = Math.PI / 2 + (Math.random() - 0.5) * 0.4;
-            ray.rotation.z = (Math.random() - 0.5) * 0.5;
-
-            ray.userData = {
-                rotSpeed: (Math.random() - 0.5) * 0.001,
-                pulseSpeed: 0.001 + Math.random() * 0.002,
-                baseOpacity: rayMat.opacity,
-            };
-
-            scene.add(ray);
-            godRays.push(ray);
-        }
-
-        // ===== WORMHOLE TUNNEL RING =====
-        const ringCount = isMobile ? 8 : 20;
+        // =============================================
+        // 2. WORMHOLE TUNNEL — 30 RINGS
+        // =============================================
+        const ringCount = isMobile ? 12 : 30;
         const wormholeRings = [];
 
         for (let i = 0; i < ringCount; i++) {
-            const ringGeo = new THREE.TorusGeometry(
-                60 + i * 15,  // radius grows
-                0.3 + Math.random() * 0.5,  // tube
-                16, 100
+            const ring = new THREE.Mesh(
+                new THREE.TorusGeometry(50 + i * 18, 0.3 + Math.random() * 0.4, 16, 120),
+                new THREE.MeshBasicMaterial({
+                    color: colorArray[i % colorArray.length],
+                    transparent: true,
+                    opacity: 0.04 + (1 - i / ringCount) * 0.05,
+                    blending: THREE.AdditiveBlending,
+                    depthWrite: false,
+                })
             );
-            const ringMat = new THREE.MeshBasicMaterial({
-                color: colorPalette[i % colorPalette.length],
-                transparent: true,
-                opacity: 0.03 + (1 - i / ringCount) * 0.04,
-                blending: THREE.AdditiveBlending,
-                depthWrite: false,
-            });
-            const ring = new THREE.Mesh(ringGeo, ringMat);
-            ring.position.z = -200 - i * 80;
+            ring.position.z = -200 - i * 100;
             ring.userData = {
-                rotSpeed: 0.002 + Math.random() * 0.003,
-                baseZ: ring.position.z,
-                pulsePhase: Math.random() * Math.PI * 2,
+                rotSpeed: 0.002 + Math.random() * 0.004,
+                phase: Math.random() * Math.PI * 2,
             };
             scene.add(ring);
             wormholeRings.push(ring);
         }
 
-        // ===== AMBIENT LIGHT PARTICLES (DUST) =====
-        const dustCount = isMobile ? 200 : 800;
-        const dustGeo = new THREE.BufferGeometry();
-        const dustPositions = new Float32Array(dustCount * 3);
-        const dustColors = new Float32Array(dustCount * 3);
+        // =============================================
+        // 3. DNA DOUBLE HELIX
+        // =============================================
+        const dnaGroup = new THREE.Group();
+        const helixPoints = isMobile ? 60 : 150;
+        const helixRadius = 80;
+        const helixHeight = 1500;
 
-        for (let i = 0; i < dustCount; i++) {
-            dustPositions[i * 3] = (Math.random() - 0.5) * 3000;
-            dustPositions[i * 3 + 1] = (Math.random() - 0.5) * 1500;
-            dustPositions[i * 3 + 2] = (Math.random() - 0.5) * 3000;
+        for (let strand = 0; strand < 2; strand++) {
+            const offset = strand * Math.PI;
+            for (let i = 0; i < helixPoints; i++) {
+                const t = i / helixPoints;
+                const angle = t * Math.PI * 8 + offset;
+                const y = t * helixHeight - helixHeight / 2;
 
-            const c = colorPalette[Math.floor(Math.random() * colorPalette.length)];
-            dustColors[i * 3] = c.r;
-            dustColors[i * 3 + 1] = c.g;
-            dustColors[i * 3 + 2] = c.b;
+                const sphere = new THREE.Mesh(
+                    new THREE.SphereGeometry(2 + Math.random() * 2, 8, 8),
+                    new THREE.MeshBasicMaterial({
+                        color: strand === 0 ? colors.purple : colors.pink,
+                        transparent: true,
+                        opacity: 0.2,
+                        blending: THREE.AdditiveBlending,
+                    })
+                );
+                sphere.position.set(
+                    Math.cos(angle) * helixRadius,
+                    y,
+                    Math.sin(angle) * helixRadius
+                );
+                dnaGroup.add(sphere);
+
+                // Cross-links
+                if (strand === 0 && i % 5 === 0) {
+                    const angle2 = angle + Math.PI;
+                    const lineGeo = new THREE.BufferGeometry().setFromPoints([
+                        new THREE.Vector3(Math.cos(angle) * helixRadius, y, Math.sin(angle) * helixRadius),
+                        new THREE.Vector3(Math.cos(angle2) * helixRadius, y, Math.sin(angle2) * helixRadius),
+                    ]);
+                    const line = new THREE.Line(lineGeo, new THREE.LineBasicMaterial({
+                        color: colors.gold,
+                        transparent: true,
+                        opacity: 0.08,
+                        blending: THREE.AdditiveBlending,
+                    }));
+                    dnaGroup.add(line);
+                }
+            }
         }
 
-        dustGeo.setAttribute('position', new THREE.BufferAttribute(dustPositions, 3));
-        dustGeo.setAttribute('color', new THREE.BufferAttribute(dustColors, 3));
+        dnaGroup.position.set(600, 0, -400);
+        scene.add(dnaGroup);
 
-        const dustMaterial = new THREE.PointsMaterial({
-            size: 1.5,
-            vertexColors: true,
-            transparent: true,
-            opacity: 0.3,
-            blending: THREE.AdditiveBlending,
-            depthWrite: false,
-        });
+        // =============================================
+        // 4. ASTEROID BELT
+        // =============================================
+        const asteroidCount = isMobile ? 100 : 400;
+        const asteroids = [];
 
-        const dust = new THREE.Points(dustGeo, dustMaterial);
-        scene.add(dust);
+        for (let i = 0; i < asteroidCount; i++) {
+            const size = 1 + Math.random() * 4;
+            const geo = Math.random() > 0.5
+                ? new THREE.IcosahedronGeometry(size, 0)
+                : new THREE.OctahedronGeometry(size, 0);
 
-        // ===== ENERGY ORBS =====
-        const orbCount = isMobile ? 2 : 5;
+            const asteroid = new THREE.Mesh(geo, new THREE.MeshBasicMaterial({
+                color: pickColor(),
+                transparent: true,
+                opacity: 0.15 + Math.random() * 0.15,
+                blending: THREE.AdditiveBlending,
+                wireframe: Math.random() > 0.5,
+            }));
+
+            const beltRadius = 800 + Math.random() * 600;
+            const angle = Math.random() * Math.PI * 2;
+            asteroid.position.set(
+                Math.cos(angle) * beltRadius,
+                (Math.random() - 0.5) * 80,
+                Math.sin(angle) * beltRadius
+            );
+            asteroid.userData = {
+                angle: angle,
+                radius: beltRadius,
+                speed: 0.0001 + Math.random() * 0.0003,
+                rotSpeed: new THREE.Vector3(
+                    (Math.random() - 0.5) * 0.02,
+                    (Math.random() - 0.5) * 0.02,
+                    (Math.random() - 0.5) * 0.02
+                ),
+            };
+            scene.add(asteroid);
+            asteroids.push(asteroid);
+        }
+
+        // =============================================
+        // 5. NEBULA PLASMA CLOUDS
+        // =============================================
+        const nebulaCount = isMobile ? 4 : 12;
+        const nebulae = [];
+
+        for (let i = 0; i < nebulaCount; i++) {
+            const size = 120 + Math.random() * 300;
+            const nebula = new THREE.Mesh(
+                new THREE.SphereGeometry(size, 16, 16),
+                new THREE.MeshBasicMaterial({
+                    color: pickColor(),
+                    transparent: true,
+                    opacity: 0.01 + Math.random() * 0.02,
+                    blending: THREE.AdditiveBlending,
+                    depthWrite: false,
+                })
+            );
+            nebula.position.set(
+                (Math.random() - 0.5) * 3000,
+                (Math.random() - 0.5) * 1000,
+                (Math.random() - 0.5) * 3000
+            );
+            nebula.userData = {
+                speed: new THREE.Vector3(
+                    (Math.random() - 0.5) * 0.15,
+                    (Math.random() - 0.5) * 0.08,
+                    (Math.random() - 0.5) * 0.12
+                ),
+                pulseSpeed: 0.001 + Math.random() * 0.003,
+                baseScale: 0.7 + Math.random() * 0.6,
+            };
+            scene.add(nebula);
+            nebulae.push(nebula);
+        }
+
+        // =============================================
+        // 6. VOLUMETRIC GOD RAYS
+        // =============================================
+        const godRayCount = isMobile ? 3 : 8;
+        const godRays = [];
+
+        for (let i = 0; i < godRayCount; i++) {
+            const ray = new THREE.Mesh(
+                new THREE.CylinderGeometry(0.5, 100 + Math.random() * 150, 2000, 8, 1, true),
+                new THREE.MeshBasicMaterial({
+                    color: colorArray[i % colorArray.length],
+                    transparent: true,
+                    opacity: 0.006 + Math.random() * 0.01,
+                    blending: THREE.AdditiveBlending,
+                    depthWrite: false,
+                    side: THREE.DoubleSide,
+                })
+            );
+            ray.position.set(
+                (Math.random() - 0.5) * 1000,
+                -400 + Math.random() * 300,
+                -800 + Math.random() * 400
+            );
+            ray.rotation.x = Math.PI / 2 + (Math.random() - 0.5) * 0.5;
+            ray.rotation.z = (Math.random() - 0.5) * 0.6;
+            ray.userData = {
+                rotSpeed: (Math.random() - 0.5) * 0.0008,
+                pulseSpeed: 0.001 + Math.random() * 0.002,
+                baseOpacity: ray.material.opacity,
+            };
+            scene.add(ray);
+            godRays.push(ray);
+        }
+
+        // =============================================
+        // 7. FLOATING HOLOGRAPHIC GEOMETRY
+        // =============================================
+        const shapeCount = isMobile ? 5 : 15;
+        const floatingShapes = [];
+
+        for (let i = 0; i < shapeCount; i++) {
+            let geo;
+            switch (i % 7) {
+                case 0: geo = new THREE.IcosahedronGeometry(15 + Math.random() * 25, 1); break;
+                case 1: geo = new THREE.OctahedronGeometry(12 + Math.random() * 20, 0); break;
+                case 2: geo = new THREE.TorusKnotGeometry(10 + Math.random() * 15, 3, 80, 12); break;
+                case 3: geo = new THREE.TetrahedronGeometry(15 + Math.random() * 20, 0); break;
+                case 4: geo = new THREE.DodecahedronGeometry(12 + Math.random() * 18, 0); break;
+                case 5: geo = new THREE.TorusGeometry(12 + Math.random() * 15, 3, 12, 40); break;
+                case 6: geo = new THREE.ConeGeometry(10 + Math.random() * 12, 25, 6); break;
+            }
+
+            const color = pickColor();
+            const group = new THREE.Group();
+
+            // Wireframe
+            group.add(new THREE.Mesh(geo, new THREE.MeshBasicMaterial({
+                color, transparent: true, opacity: 0.08, wireframe: true,
+                blending: THREE.AdditiveBlending,
+            })));
+            // Solid fill
+            group.add(new THREE.Mesh(geo, new THREE.MeshBasicMaterial({
+                color, transparent: true, opacity: 0.02,
+                blending: THREE.AdditiveBlending, side: THREE.DoubleSide,
+            })));
+
+            group.position.set(
+                (Math.random() - 0.5) * 1800,
+                (Math.random() - 0.5) * 800,
+                (Math.random() - 0.5) * 1200
+            );
+            group.userData = {
+                rot: new THREE.Vector3(
+                    (Math.random() - 0.5) * 0.008,
+                    (Math.random() - 0.5) * 0.008,
+                    (Math.random() - 0.5) * 0.004
+                ),
+                floatSpeed: 0.0004 + Math.random() * 0.001,
+                floatAmp: 30 + Math.random() * 60,
+                baseY: group.position.y,
+            };
+            scene.add(group);
+            floatingShapes.push(group);
+        }
+
+        // =============================================
+        // 8. ENERGY ORBS WITH ORBITING RINGS
+        // =============================================
+        const orbCount = isMobile ? 3 : 7;
         const energyOrbs = [];
 
         for (let i = 0; i < orbCount; i++) {
-            const orbGroup = new THREE.Group();
+            const group = new THREE.Group();
+            const color = pickColor();
+            const color2 = pickColor();
 
-            // Core glow
-            const coreGeo = new THREE.SphereGeometry(5 + Math.random() * 8, 16, 16);
-            const coreMat = new THREE.MeshBasicMaterial({
-                color: colorPalette[i % colorPalette.length],
-                transparent: true,
-                opacity: 0.3,
-                blending: THREE.AdditiveBlending,
-            });
-            const core = new THREE.Mesh(coreGeo, coreMat);
-
-            // Outer glow
-            const glowGeo = new THREE.SphereGeometry(15 + Math.random() * 20, 16, 16);
-            const glowMat = new THREE.MeshBasicMaterial({
-                color: colorPalette[i % colorPalette.length],
-                transparent: true,
-                opacity: 0.04,
-                blending: THREE.AdditiveBlending,
-            });
-            const glow = new THREE.Mesh(glowGeo, glowMat);
-
-            // Orbiting ring
-            const orbitGeo = new THREE.TorusGeometry(20 + Math.random() * 10, 0.3, 8, 50);
-            const orbitMat = new THREE.MeshBasicMaterial({
-                color: colorPalette[(i + 2) % colorPalette.length],
-                transparent: true,
-                opacity: 0.1,
-                blending: THREE.AdditiveBlending,
-            });
-            const orbit = new THREE.Mesh(orbitGeo, orbitMat);
-
-            orbGroup.add(core);
-            orbGroup.add(glow);
-            orbGroup.add(orbit);
-
-            orbGroup.position.set(
-                (Math.random() - 0.5) * 1500,
-                (Math.random() - 0.5) * 600,
-                (Math.random() - 0.5) * 800
+            // Core
+            group.add(new THREE.Mesh(
+                new THREE.SphereGeometry(4 + Math.random() * 6, 16, 16),
+                new THREE.MeshBasicMaterial({
+                    color, transparent: true, opacity: 0.3,
+                    blending: THREE.AdditiveBlending,
+                })
+            ));
+            // Glow
+            group.add(new THREE.Mesh(
+                new THREE.SphereGeometry(15 + Math.random() * 20, 12, 12),
+                new THREE.MeshBasicMaterial({
+                    color, transparent: true, opacity: 0.03,
+                    blending: THREE.AdditiveBlending,
+                })
+            ));
+            // Ring 1
+            const ring1 = new THREE.Mesh(
+                new THREE.TorusGeometry(18 + Math.random() * 10, 0.3, 8, 50),
+                new THREE.MeshBasicMaterial({
+                    color: color2, transparent: true, opacity: 0.1,
+                    blending: THREE.AdditiveBlending,
+                })
             );
+            group.add(ring1);
+            // Ring 2
+            const ring2 = new THREE.Mesh(
+                new THREE.TorusGeometry(25 + Math.random() * 8, 0.2, 8, 50),
+                new THREE.MeshBasicMaterial({
+                    color: pickColor(), transparent: true, opacity: 0.06,
+                    blending: THREE.AdditiveBlending,
+                })
+            );
+            ring2.rotation.x = Math.PI / 3;
+            group.add(ring2);
 
-            orbGroup.userData = {
-                orbitMesh: orbit,
+            group.position.set(
+                (Math.random() - 0.5) * 2000,
+                (Math.random() - 0.5) * 800,
+                (Math.random() - 0.5) * 1200
+            );
+            group.userData = {
+                ring1, ring2,
                 floatSpeed: 0.0003 + Math.random() * 0.0006,
-                floatAmp: 50 + Math.random() * 100,
-                basePos: orbGroup.position.clone(),
-                rotSpeed: 0.005 + Math.random() * 0.01,
+                floatAmp: 60 + Math.random() * 120,
+                basePos: group.position.clone(),
+                rotSpeed: 0.003 + Math.random() * 0.008,
             };
-
-            scene.add(orbGroup);
-            energyOrbs.push(orbGroup);
+            scene.add(group);
+            energyOrbs.push(group);
         }
 
-        // ===== MOUSE TRACKING =====
+        // =============================================
+        // 9. SHOOTING STARS / COMETS
+        // =============================================
+        const cometCount = isMobile ? 3 : 8;
+        const comets = [];
+
+        for (let i = 0; i < cometCount; i++) {
+            const cometGroup = new THREE.Group();
+
+            // Comet head
+            const head = new THREE.Mesh(
+                new THREE.SphereGeometry(2 + Math.random() * 3, 8, 8),
+                new THREE.MeshBasicMaterial({
+                    color: pickColor(),
+                    transparent: true,
+                    opacity: 0.6,
+                    blending: THREE.AdditiveBlending,
+                })
+            );
+            cometGroup.add(head);
+
+            // Tail trail particles
+            const tailCount = 20 + Math.floor(Math.random() * 20);
+            for (let t = 0; t < tailCount; t++) {
+                const tailParticle = new THREE.Mesh(
+                    new THREE.SphereGeometry(0.5 + (1 - t / tailCount) * 2, 4, 4),
+                    new THREE.MeshBasicMaterial({
+                        color: head.material.color,
+                        transparent: true,
+                        opacity: 0.3 * (1 - t / tailCount),
+                        blending: THREE.AdditiveBlending,
+                    })
+                );
+                tailParticle.position.x = -t * 5;
+                tailParticle.position.y = t * 2;
+                cometGroup.add(tailParticle);
+            }
+
+            cometGroup.position.set(
+                (Math.random() - 0.5) * 4000,
+                (Math.random() - 0.5) * 2000,
+                (Math.random() - 0.5) * 2000
+            );
+
+            cometGroup.userData = {
+                speed: 1 + Math.random() * 3,
+                dirX: -0.5 - Math.random(),
+                dirY: -0.3 - Math.random() * 0.5,
+                dirZ: (Math.random() - 0.5),
+                resetTimeout: Math.random() * 600 + 200,
+                timer: 0,
+            };
+
+            scene.add(cometGroup);
+            comets.push(cometGroup);
+        }
+
+        // =============================================
+        // 10. COSMIC DUST FIELD
+        // =============================================
+        const dustCount = isMobile ? 400 : 2000;
+        const dustGeo = new THREE.BufferGeometry();
+        const dPos = new Float32Array(dustCount * 3);
+        const dCol = new Float32Array(dustCount * 3);
+
+        for (let i = 0; i < dustCount; i++) {
+            dPos[i * 3] = (Math.random() - 0.5) * 4000;
+            dPos[i * 3 + 1] = (Math.random() - 0.5) * 2000;
+            dPos[i * 3 + 2] = (Math.random() - 0.5) * 4000;
+            const c = pickColor();
+            dCol[i * 3] = c.r; dCol[i * 3 + 1] = c.g; dCol[i * 3 + 2] = c.b;
+        }
+
+        dustGeo.setAttribute('position', new THREE.BufferAttribute(dPos, 3));
+        dustGeo.setAttribute('color', new THREE.BufferAttribute(dCol, 3));
+        const dust = new THREE.Points(dustGeo, new THREE.PointsMaterial({
+            size: 1.2, vertexColors: true, transparent: true, opacity: 0.25,
+            blending: THREE.AdditiveBlending, depthWrite: false,
+        }));
+        scene.add(dust);
+
+        // =============================================
+        // 11. PLASMA ENERGY FIELD
+        // =============================================
+        const plasmaCount = isMobile ? 2 : 5;
+        const plasmaFields = [];
+
+        for (let i = 0; i < plasmaCount; i++) {
+            const plasmaGeo = new THREE.PlaneGeometry(400 + Math.random() * 300, 400 + Math.random() * 300, 1, 1);
+            const plasma = new THREE.Mesh(plasmaGeo, new THREE.MeshBasicMaterial({
+                color: pickColor(),
+                transparent: true,
+                opacity: 0.008 + Math.random() * 0.01,
+                blending: THREE.AdditiveBlending,
+                side: THREE.DoubleSide,
+                depthWrite: false,
+            }));
+            plasma.position.set(
+                (Math.random() - 0.5) * 2000,
+                (Math.random() - 0.5) * 800,
+                (Math.random() - 0.5) * 1500
+            );
+            plasma.rotation.set(
+                Math.random() * Math.PI,
+                Math.random() * Math.PI,
+                Math.random() * Math.PI
+            );
+            plasma.userData = {
+                rotSpeed: new THREE.Vector3(
+                    (Math.random() - 0.5) * 0.002,
+                    (Math.random() - 0.5) * 0.002,
+                    (Math.random() - 0.5) * 0.001
+                ),
+                pulseSpeed: 0.002 + Math.random() * 0.003,
+                baseOpacity: plasma.material.opacity,
+            };
+            scene.add(plasma);
+            plasmaFields.push(plasma);
+        }
+
+        // =============================================
+        // 12. GRAVITATIONAL LENS (Black Hole Core)
+        // =============================================
+        const blackHoleGroup = new THREE.Group();
+
+        // Event horizon
+        const eventHorizon = new THREE.Mesh(
+            new THREE.SphereGeometry(30, 32, 32),
+            new THREE.MeshBasicMaterial({
+                color: 0x0f0c29,
+                transparent: true,
+                opacity: 0.15,
+            })
+        );
+        blackHoleGroup.add(eventHorizon);
+
+        // Accretion disk
+        const accretionGeo = new THREE.TorusGeometry(60, 15, 4, 100);
+        const accretion = new THREE.Mesh(accretionGeo, new THREE.MeshBasicMaterial({
+            color: colors.gold,
+            transparent: true,
+            opacity: 0.06,
+            blending: THREE.AdditiveBlending,
+            side: THREE.DoubleSide,
+        }));
+        accretion.rotation.x = Math.PI / 2.5;
+        blackHoleGroup.add(accretion);
+
+        // Inner glow ring
+        const innerRing = new THREE.Mesh(
+            new THREE.TorusGeometry(40, 2, 8, 100),
+            new THREE.MeshBasicMaterial({
+                color: colors.coral,
+                transparent: true,
+                opacity: 0.08,
+                blending: THREE.AdditiveBlending,
+            })
+        );
+        innerRing.rotation.x = Math.PI / 2.5;
+        blackHoleGroup.add(innerRing);
+
+        // Gravitational glow
+        const gravGlow = new THREE.Mesh(
+            new THREE.SphereGeometry(80, 16, 16),
+            new THREE.MeshBasicMaterial({
+                color: colors.purple,
+                transparent: true,
+                opacity: 0.02,
+                blending: THREE.AdditiveBlending,
+            })
+        );
+        blackHoleGroup.add(gravGlow);
+
+        blackHoleGroup.position.set(-500, 100, -600);
+        scene.add(blackHoleGroup);
+
+        // =============================================
+        // 13. LIGHT STREAKS / SPEED LINES
+        // =============================================
+        const streakCount = isMobile ? 20 : 60;
+        const streaks = [];
+
+        for (let i = 0; i < streakCount; i++) {
+            const length = 50 + Math.random() * 200;
+            const streakGeo = new THREE.BufferGeometry().setFromPoints([
+                new THREE.Vector3(0, 0, 0),
+                new THREE.Vector3(0, 0, -length),
+            ]);
+            const streak = new THREE.Line(streakGeo, new THREE.LineBasicMaterial({
+                color: pickColor(),
+                transparent: true,
+                opacity: 0.05 + Math.random() * 0.08,
+                blending: THREE.AdditiveBlending,
+            }));
+            streak.position.set(
+                (Math.random() - 0.5) * 2000,
+                (Math.random() - 0.5) * 1000,
+                (Math.random() - 0.5) * 3000
+            );
+            streak.userData = { speed: 0.5 + Math.random() * 2 };
+            scene.add(streak);
+            streaks.push(streak);
+        }
+
+        // =============================================
+        // MOUSE & SCROLL TRACKING
+        // =============================================
         document.addEventListener('mousemove', (e) => {
             targetMouseX = (e.clientX / window.innerWidth) * 2 - 1;
             targetMouseY = -(e.clientY / window.innerHeight) * 2 + 1;
         });
 
-        // ===== RESIZE HANDLER =====
-        window.addEventListener('resize', () => {
-            camera.aspect = window.innerWidth / window.innerHeight;
-            camera.updateProjectionMatrix();
-            renderer.setSize(window.innerWidth, window.innerHeight);
-        });
-
-        // ===== SCROLL-BASED CAMERA DEPTH =====
         let scrollY = 0;
-        window.addEventListener('scroll', () => {
-            scrollY = window.scrollY;
+        window.addEventListener('scroll', () => { scrollY = window.scrollY; });
+
+        window.addEventListener('resize', () => {
+            W = window.innerWidth;
+            H = window.innerHeight;
+            camera.aspect = W / H;
+            camera.updateProjectionMatrix();
+            renderer.setSize(W, H);
         });
 
-        // ===== ANIMATION LOOP =====
+        // =============================================
+        // ANIMATION LOOP
+        // =============================================
         let time = 0;
 
         function animate() {
             requestAnimationFrame(animate);
-            time += 0.005;
+            time += 0.004;
 
-            // Smooth mouse follow
-            mouseX += (targetMouseX - mouseX) * 0.03;
-            mouseY += (targetMouseY - mouseY) * 0.03;
+            // Smooth mouse
+            mouseX += (targetMouseX - mouseX) * 0.025;
+            mouseY += (targetMouseY - mouseY) * 0.025;
 
-            // Camera follows mouse gently
-            camera.position.x += (mouseX * 100 - camera.position.x) * 0.02;
-            camera.position.y += (mouseY * 50 - camera.position.y) * 0.02;
+            // Camera
+            camera.position.x += (mouseX * 120 - camera.position.x) * 0.015;
+            camera.position.y += (mouseY * 60 - camera.position.y) * 0.015;
+            const depth = scrollY * 0.12;
+            camera.position.z = 1000 - depth * 0.2;
+            camera.lookAt(0, 0, -depth * 0.4);
 
-            // Camera depth based on scroll
-            const scrollDepth = scrollY * 0.15;
-            camera.position.z = 800 - scrollDepth * 0.3;
-            camera.lookAt(0, 0, -scrollDepth * 0.5);
+            // 1. Galaxy rotation
+            galaxy.rotation.y += 0.0002;
+            galaxy.rotation.x = Math.sin(time * 0.3) * 0.015;
 
-            // Rotate galaxy slowly
-            galaxy.rotation.y += 0.0003;
-            galaxy.rotation.x = Math.sin(time * 0.5) * 0.02;
+            // 2. Wormhole
+            wormholeRings.forEach((r, i) => {
+                r.rotation.z += r.userData.rotSpeed * (i % 2 === 0 ? 1 : -1);
+                r.rotation.x = Math.sin(time + r.userData.phase) * 0.08;
+                r.scale.setScalar(Math.sin(time * 1.5 + r.userData.phase) * 0.25 + 1);
+            });
 
-            // Animate nebulae
+            // 3. DNA helix
+            dnaGroup.rotation.y += 0.002;
+            dnaGroup.position.y = Math.sin(time * 0.5) * 50;
+
+            // 4. Asteroids
+            asteroids.forEach(a => {
+                a.userData.angle += a.userData.speed;
+                a.position.x = Math.cos(a.userData.angle) * a.userData.radius;
+                a.position.z = Math.sin(a.userData.angle) * a.userData.radius;
+                a.rotation.x += a.userData.rotSpeed.x;
+                a.rotation.y += a.userData.rotSpeed.y;
+            });
+
+            // 5. Nebulae
             nebulae.forEach((n, i) => {
-                n.position.x += n.userData.speedX;
-                n.position.y += n.userData.speedY;
-                const pulse = Math.sin(time * n.userData.pulseSpeed * 200 + i) * 0.15 + n.userData.baseScale;
-                n.scale.setScalar(pulse);
-                if (Math.abs(n.position.x) > 1500) n.userData.speedX *= -1;
-                if (Math.abs(n.position.y) > 500) n.userData.speedY *= -1;
+                n.position.add(n.userData.speed);
+                const s = Math.sin(time * n.userData.pulseSpeed * 100 + i) * 0.2 + n.userData.baseScale;
+                n.scale.setScalar(s);
+                if (Math.abs(n.position.x) > 2000) n.userData.speed.x *= -1;
+                if (Math.abs(n.position.y) > 800) n.userData.speed.y *= -1;
+                if (Math.abs(n.position.z) > 2000) n.userData.speed.z *= -1;
             });
 
-            // Animate floating shapes
-            floatingShapes.forEach((shape, i) => {
-                shape.rotation.x += shape.userData.rotSpeedX;
-                shape.rotation.y += shape.userData.rotSpeedY;
-                shape.rotation.z += shape.userData.rotSpeedZ;
-                shape.position.y = shape.userData.baseY +
-                    Math.sin(time * shape.userData.floatSpeed * 200 + i * 0.7) * shape.userData.floatAmp;
+            // 6. God rays
+            godRays.forEach((r, i) => {
+                r.rotation.z += r.userData.rotSpeed;
+                const p = Math.sin(time * r.userData.pulseSpeed * 150 + i) * 0.5 + 0.5;
+                r.material.opacity = r.userData.baseOpacity * (0.4 + p * 0.6);
             });
 
-            // Animate god rays
-            godRays.forEach((ray, i) => {
-                ray.rotation.z += ray.userData.rotSpeed;
-                const pulse = Math.sin(time * ray.userData.pulseSpeed * 200 + i) * 0.5 + 0.5;
-                ray.material.opacity = ray.userData.baseOpacity * (0.5 + pulse * 0.5);
+            // 7. Floating shapes
+            floatingShapes.forEach((s, i) => {
+                s.rotation.x += s.userData.rot.x;
+                s.rotation.y += s.userData.rot.y;
+                s.rotation.z += s.userData.rot.z;
+                s.position.y = s.userData.baseY + Math.sin(time * s.userData.floatSpeed * 150 + i) * s.userData.floatAmp;
             });
 
-            // Animate wormhole rings
-            wormholeRings.forEach((ring, i) => {
-                ring.rotation.z += ring.userData.rotSpeed * (i % 2 === 0 ? 1 : -1);
-                ring.rotation.x = Math.sin(time + ring.userData.pulsePhase) * 0.1;
-                const pulse = Math.sin(time * 2 + ring.userData.pulsePhase) * 0.3 + 1;
-                ring.scale.setScalar(pulse);
+            // 8. Energy orbs
+            energyOrbs.forEach((o, i) => {
+                const t2 = time * o.userData.floatSpeed * 150;
+                o.position.x = o.userData.basePos.x + Math.sin(t2 + i) * o.userData.floatAmp;
+                o.position.y = o.userData.basePos.y + Math.cos(t2 * 0.7 + i * 2) * o.userData.floatAmp * 0.4;
+                o.userData.ring1.rotation.x += o.userData.rotSpeed;
+                o.userData.ring1.rotation.y += o.userData.rotSpeed * 0.6;
+                o.userData.ring2.rotation.y += o.userData.rotSpeed * 0.8;
+                o.userData.ring2.rotation.z += o.userData.rotSpeed * 0.4;
             });
 
-            // Animate dust particles drifting
-            dust.rotation.y += 0.0001;
-            dust.rotation.x = Math.sin(time * 0.3) * 0.001;
+            // 9. Comets
+            comets.forEach(c => {
+                c.position.x += c.userData.dirX * c.userData.speed;
+                c.position.y += c.userData.dirY * c.userData.speed;
+                c.position.z += c.userData.dirZ * c.userData.speed;
+                c.userData.timer++;
+                if (c.userData.timer > c.userData.resetTimeout) {
+                    c.position.set(
+                        (Math.random() - 0.5) * 4000,
+                        800 + Math.random() * 500,
+                        (Math.random() - 0.5) * 2000
+                    );
+                    c.userData.timer = 0;
+                    c.userData.resetTimeout = Math.random() * 600 + 200;
+                }
+            });
 
-            // Animate energy orbs
-            energyOrbs.forEach((orb, i) => {
-                const t = time * orb.userData.floatSpeed * 200;
-                orb.position.x = orb.userData.basePos.x + Math.sin(t + i) * orb.userData.floatAmp;
-                orb.position.y = orb.userData.basePos.y + Math.cos(t * 0.8 + i * 2) * orb.userData.floatAmp * 0.5;
-                orb.userData.orbitMesh.rotation.x += orb.userData.rotSpeed;
-                orb.userData.orbitMesh.rotation.y += orb.userData.rotSpeed * 0.7;
+            // 10. Dust drift
+            dust.rotation.y += 0.00005;
+            dust.rotation.x = Math.sin(time * 0.2) * 0.0005;
+
+            // 11. Plasma fields
+            plasmaFields.forEach((p, i) => {
+                p.rotation.x += p.userData.rotSpeed.x;
+                p.rotation.y += p.userData.rotSpeed.y;
+                p.rotation.z += p.userData.rotSpeed.z;
+                const pulse = Math.sin(time * p.userData.pulseSpeed * 100 + i * 1.5) * 0.5 + 0.5;
+                p.material.opacity = p.userData.baseOpacity * (0.5 + pulse);
+            });
+
+            // 12. Black hole
+            blackHoleGroup.rotation.y += 0.001;
+            accretion.rotation.z += 0.003;
+            innerRing.rotation.z -= 0.005;
+            const bhPulse = Math.sin(time * 2) * 0.1 + 1;
+            gravGlow.scale.setScalar(bhPulse);
+
+            // 13. Light streaks
+            streaks.forEach(s => {
+                s.position.z += s.userData.speed;
+                if (s.position.z > 2000) s.position.z = -2000;
             });
 
             renderer.render(scene, camera);
@@ -441,84 +755,61 @@
 
         animate();
 
-        // ===== GSAP SCROLL ANIMATIONS =====
+        // =============================================
+        // GSAP CINEMATIC SCROLL ANIMATIONS
+        // =============================================
         if (typeof gsap !== 'undefined' && typeof ScrollTrigger !== 'undefined') {
             gsap.registerPlugin(ScrollTrigger);
 
-            // Parallax sections
-            gsap.utils.toArray('.section').forEach((section) => {
-                gsap.fromTo(section, {
-                    opacity: 0.3,
-                    y: 60,
-                }, {
-                    opacity: 1,
-                    y: 0,
-                    duration: 1.2,
-                    ease: 'power3.out',
-                    scrollTrigger: {
-                        trigger: section,
-                        start: 'top 85%',
-                        end: 'top 30%',
-                        toggleActions: 'play none none reverse',
-                    }
+            // Sections fade in
+            gsap.utils.toArray('.section').forEach(s => {
+                gsap.fromTo(s, { opacity: 0.2, y: 80 }, {
+                    opacity: 1, y: 0, duration: 1.4, ease: 'power3.out',
+                    scrollTrigger: { trigger: s, start: 'top 85%', end: 'top 25%', toggleActions: 'play none none reverse' }
                 });
             });
 
-            // Stagger cards
-            gsap.utils.toArray('.exp-card, .showcase-card, .achievement-card').forEach((card, i) => {
-                gsap.fromTo(card, {
-                    opacity: 0,
-                    y: 40,
-                    rotateX: 5,
-                    scale: 0.95,
-                }, {
-                    opacity: 1,
-                    y: 0,
-                    rotateX: 0,
-                    scale: 1,
-                    duration: 0.8,
-                    delay: i * 0.1,
+            // Cards stagger
+            gsap.utils.toArray('.exp-card, .showcase-card, .achievement-card').forEach((c, i) => {
+                gsap.fromTo(c, { opacity: 0, y: 50, rotateX: 8, scale: 0.93 }, {
+                    opacity: 1, y: 0, rotateX: 0, scale: 1, duration: 0.9, delay: i * 0.08,
                     ease: 'power2.out',
-                    scrollTrigger: {
-                        trigger: card,
-                        start: 'top 90%',
-                        toggleActions: 'play none none reverse',
-                    }
+                    scrollTrigger: { trigger: c, start: 'top 92%', toggleActions: 'play none none reverse' }
                 });
             });
 
-            // Hero cinematic entrance
-            gsap.fromTo('.hero-title', {
-                opacity: 0, y: 80, scale: 0.9, filter: 'blur(20px)'
-            }, {
-                opacity: 1, y: 0, scale: 1, filter: 'blur(0px)',
-                duration: 1.5, delay: 1, ease: 'power3.out'
+            // Hero cinematic
+            gsap.fromTo('.hero-title', { opacity: 0, y: 100, scale: 0.85, filter: 'blur(25px)' },
+                { opacity: 1, y: 0, scale: 1, filter: 'blur(0px)', duration: 1.8, delay: 1, ease: 'power3.out' });
+
+            gsap.fromTo('.hero-subtitle', { opacity: 0, y: 60, filter: 'blur(15px)' },
+                { opacity: 1, y: 0, filter: 'blur(0px)', duration: 1.4, delay: 1.4, ease: 'power3.out' });
+
+            gsap.fromTo('.hero-actions', { opacity: 0, y: 50 },
+                { opacity: 1, y: 0, duration: 1.2, delay: 1.7, ease: 'power3.out' });
+
+            gsap.fromTo('.hero-visual', { opacity: 0, x: 120, scale: 0.8, filter: 'blur(20px)' },
+                { opacity: 1, x: 0, scale: 1, filter: 'blur(0px)', duration: 1.8, delay: 1.3, ease: 'power3.out' });
+
+            // Skill bars with scroll
+            gsap.utils.toArray('.skill-bar-fill').forEach(bar => {
+                const w = bar.style.getPropertyValue('--width');
+                gsap.fromTo(bar, { width: '0%' }, {
+                    width: w, duration: 2, ease: 'power2.out',
+                    scrollTrigger: { trigger: bar, start: 'top 90%' }
+                });
             });
 
-            gsap.fromTo('.hero-subtitle', {
-                opacity: 0, y: 50, filter: 'blur(10px)'
-            }, {
-                opacity: 1, y: 0, filter: 'blur(0px)',
-                duration: 1.2, delay: 1.3, ease: 'power3.out'
-            });
-
-            gsap.fromTo('.hero-actions', {
-                opacity: 0, y: 40
-            }, {
-                opacity: 1, y: 0,
-                duration: 1, delay: 1.6, ease: 'power3.out'
-            });
-
-            gsap.fromTo('.hero-visual', {
-                opacity: 0, x: 100, scale: 0.85, filter: 'blur(15px)'
-            }, {
-                opacity: 1, x: 0, scale: 1, filter: 'blur(0px)',
-                duration: 1.5, delay: 1.2, ease: 'power3.out'
+            // Section labels
+            gsap.utils.toArray('.section-label').forEach(l => {
+                gsap.fromTo(l, { opacity: 0, x: -30, letterSpacing: '0px' }, {
+                    opacity: 1, x: 0, letterSpacing: '3px', duration: 0.8,
+                    scrollTrigger: { trigger: l, start: 'top 90%' }
+                });
             });
         }
     }
 
-    // Start when DOM is ready
     if (document.readyState === 'loading') {
         document.addEventListener('DOMContentLoaded', initVFX3D);
     } else {
