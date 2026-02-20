@@ -1,0 +1,529 @@
+/* ============================================
+   CINEMATIC VFX THEME OVERRIDE
+   Layered on TOP of the base styles
+   Only overrides colors — never touches layout
+   ============================================ */
+
+/* ===== ROOT VARIABLE OVERRIDES ===== */
+:root {
+    --primary: #6c5ce7 !important;
+    --primary-light: #a29bfe !important;
+    --primary-dark: #4834d4 !important;
+    --secondary: #764ba2 !important;
+    --accent-gold: #fdcb6e !important;
+    --accent-rose: #fd79a8 !important;
+    --accent-emerald: #00cec9 !important;
+    --accent-violet: #a855f7 !important;
+    --accent-orange: #f39c12 !important;
+
+    --bg-primary: #f5f0ff !important;
+    --bg-secondary: #ede5ff !important;
+    --bg-tertiary: #e3d8ff !important;
+    --bg-card: rgba(255, 255, 255, 0.82) !important;
+    --bg-glass: rgba(255, 255, 255, 0.65) !important;
+
+    --text-primary: #1a1033 !important;
+    --text-secondary: #4a3f6b !important;
+    --text-muted: #7c6fa0 !important;
+
+    --gradient-hero: linear-gradient(135deg, #667eea 0%, #764ba2 50%, #f093fb 100%) !important;
+    --gradient-premium: linear-gradient(135deg, #6c5ce7 0%, #fd79a8 100%) !important;
+    --gradient-gold: linear-gradient(135deg, #f6d365 0%, #fda085 100%) !important;
+    --gradient-aurora: linear-gradient(135deg, #667eea 0%, #764ba2 25%, #f093fb 50%, #00cec9 75%, #fdcb6e 100%) !important;
+    --gradient-neon: linear-gradient(135deg, #667eea 0%, #00cec9 50%, #764ba2 100%) !important;
+    --gradient-fire: linear-gradient(135deg, #fd79a8 0%, #f39c12 50%, #fdcb6e 100%) !important;
+    --gradient-cyber: linear-gradient(135deg, #667eea 0%, #a855f7 100%) !important;
+
+    --shadow-sm: 0 2px 8px rgba(108, 92, 231, 0.08) !important;
+    --shadow-md: 0 4px 20px rgba(108, 92, 231, 0.1) !important;
+    --shadow-lg: 0 10px 40px rgba(108, 92, 231, 0.12) !important;
+    --shadow-xl: 0 25px 60px rgba(108, 92, 231, 0.15) !important;
+    --shadow-glow: 0 0 60px rgba(108, 92, 231, 0.2) !important;
+    --shadow-neon: 0 0 20px rgba(108, 92, 231, 0.3), 0 0 60px rgba(108, 92, 231, 0.1) !important;
+    --shadow-neon-rose: 0 0 20px rgba(253, 121, 168, 0.3), 0 0 60px rgba(253, 121, 168, 0.1) !important;
+    --shadow-neon-gold: 0 0 20px rgba(253, 203, 110, 0.3), 0 0 60px rgba(253, 203, 110, 0.1) !important;
+
+    --border-glow: 1px solid rgba(108, 92, 231, 0.12) !important;
+    --border-subtle: 1px solid rgba(108, 92, 231, 0.06) !important;
+    --border-neon: 1px solid rgba(108, 92, 231, 0.25) !important;
+}
+
+/* ===== BODY & BACKGROUND ===== */
+body {
+    background: #f5f0ff !important;
+    color: #1a1033 !important;
+}
+
+.bg-mesh {
+    background:
+        radial-gradient(ellipse 80% 60% at 20% 30%, rgba(102, 126, 234, 0.12) 0%, transparent 60%),
+        radial-gradient(ellipse 60% 50% at 80% 20%, rgba(240, 147, 251, 0.1) 0%, transparent 60%),
+        radial-gradient(ellipse 50% 40% at 50% 80%, rgba(253, 121, 168, 0.08) 0%, transparent 60%),
+        radial-gradient(ellipse 70% 50% at 90% 70%, rgba(118, 75, 162, 0.1) 0%, transparent 60%),
+        linear-gradient(160deg, #f5f0ff 0%, #ede5ff 40%, #f5f0ff 100%) !important;
+}
+
+.aurora-bg {
+    background: radial-gradient(ellipse at 30% 50%, rgba(102, 126, 234, 0.06) 0%, transparent 60%) !important;
+}
+
+/* ===== SCROLLBAR ===== */
+::-webkit-scrollbar-track {
+    background: rgba(245, 240, 255, 0.5) !important;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--gradient-premium) !important;
+}
+
+/* ===== NAVBAR ===== */
+.navbar {
+    background: rgba(255, 255, 255, 0.8) !important;
+    backdrop-filter: blur(25px) saturate(180%) !important;
+    -webkit-backdrop-filter: blur(25px) saturate(180%) !important;
+    border-bottom: 1px solid rgba(108, 92, 231, 0.08) !important;
+    box-shadow: 0 2px 20px rgba(108, 92, 231, 0.04) !important;
+}
+
+.navbar.scrolled {
+    background: rgba(255, 255, 255, 0.92) !important;
+    box-shadow: 0 4px 30px rgba(108, 92, 231, 0.06) !important;
+}
+
+.logo-text {
+    background: linear-gradient(135deg, #6c5ce7, #fd79a8) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+}
+
+.logo-icon {
+    background: linear-gradient(135deg, rgba(108, 92, 231, 0.12), rgba(253, 121, 168, 0.08)) !important;
+    border: 1px solid rgba(108, 92, 231, 0.15) !important;
+    color: #6c5ce7 !important;
+}
+
+.navbar-menu {
+    background: rgba(255, 255, 255, 0.6) !important;
+    border: 1px solid rgba(108, 92, 231, 0.08) !important;
+}
+
+.navbar-menu a {
+    color: #4a3f6b !important;
+}
+
+.navbar-menu a:hover,
+.navbar-menu a.active {
+    color: #6c5ce7 !important;
+    background: rgba(108, 92, 231, 0.08) !important;
+}
+
+.navbar-cta {
+    background: linear-gradient(135deg, #6c5ce7, #fd79a8) !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 20px rgba(108, 92, 231, 0.25) !important;
+}
+
+/* ===== HERO SECTION ===== */
+.hero {
+    background: transparent !important;
+}
+
+.hero-title,
+.hero-title span:not(.gradient-text) {
+    color: #1a1033 !important;
+    -webkit-text-fill-color: #1a1033 !important;
+}
+
+.hero-title .gradient-text {
+    background: linear-gradient(135deg, #6c5ce7, #f093fb, #fdcb6e) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+}
+
+.hero-subtitle,
+.hero-description,
+.hero p {
+    color: #4a3f6b !important;
+}
+
+.hero-badge {
+    background: rgba(255, 255, 255, 0.8) !important;
+    border: 1px solid rgba(108, 92, 231, 0.12) !important;
+    color: #6c5ce7 !important;
+}
+
+.hero-badge-isro {
+    background: linear-gradient(135deg, rgba(253, 203, 110, 0.15), rgba(253, 121, 168, 0.1)) !important;
+    border: 1px solid rgba(253, 203, 110, 0.25) !important;
+}
+
+.hero-chips .chip,
+.hero-stats-bar .stat-chip {
+    background: rgba(255, 255, 255, 0.75) !important;
+    border: 1px solid rgba(108, 92, 231, 0.1) !important;
+    color: #4a3f6b !important;
+}
+
+/* ===== SECTION HEADERS ===== */
+.section-label {
+    color: #6c5ce7 !important;
+}
+
+.section-title {
+    color: #1a1033 !important;
+}
+
+.section-subtitle,
+.section-description {
+    color: #4a3f6b !important;
+}
+
+/* ===== CARDS — GLASS OVER LIGHT ===== */
+.exp-card,
+.showcase-card,
+.achievement-card,
+.skill-category,
+.contact-card {
+    background: rgba(255, 255, 255, 0.75) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(108, 92, 231, 0.08) !important;
+    box-shadow: 0 4px 25px rgba(108, 92, 231, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.5) !important;
+}
+
+.exp-card:hover,
+.showcase-card:hover,
+.achievement-card:hover,
+.skill-category:hover {
+    box-shadow: 0 15px 50px rgba(108, 92, 231, 0.1), inset 0 1px 0 rgba(255, 255, 255, 0.7) !important;
+}
+
+.showcase-glow {
+    display: none !important;
+}
+
+.showcase-inner,
+.exp-content,
+.achievement-inner,
+.skill-content {
+    background: transparent !important;
+}
+
+/* ===== PROJECT HERO CARD ===== */
+.project-hero {
+    background: rgba(255, 255, 255, 0.75) !important;
+    backdrop-filter: blur(20px) !important;
+    -webkit-backdrop-filter: blur(20px) !important;
+    border: 1px solid rgba(108, 92, 231, 0.08) !important;
+    box-shadow: 0 8px 35px rgba(108, 92, 231, 0.06), inset 0 1px 0 rgba(255, 255, 255, 0.5) !important;
+}
+
+.project-hero::before {
+    background: linear-gradient(135deg, rgba(108, 92, 231, 0.03) 0%, transparent 50%) !important;
+}
+
+.project-hero::after {
+    background: linear-gradient(90deg, transparent, rgba(108, 92, 231, 0.2), transparent) !important;
+}
+
+.project-hero-title {
+    color: #1a1033 !important;
+}
+
+.project-hero-desc {
+    color: #4a3f6b !important;
+}
+
+.project-hero-tech span {
+    background: rgba(108, 92, 231, 0.06) !important;
+    border: 1px solid rgba(108, 92, 231, 0.1) !important;
+    color: #6c5ce7 !important;
+}
+
+.project-hero-metrics .metric-value {
+    color: #6c5ce7 !important;
+}
+
+.project-hero-metrics .metric-label {
+    color: #7c6fa0 !important;
+}
+
+/* ===== TEXT COLORS ===== */
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    color: #1a1033 !important;
+}
+
+p,
+span,
+li,
+td,
+th,
+label,
+.desc,
+.description {
+    color: #4a3f6b;
+}
+
+strong,
+b {
+    color: #1a1033;
+}
+
+/* ===== EXPERIENCE ===== */
+.exp-title {
+    color: #1a1033 !important;
+}
+
+.exp-company {
+    color: #6c5ce7 !important;
+}
+
+.exp-location {
+    color: #7c6fa0 !important;
+}
+
+.exp-description,
+.exp-desc {
+    color: #4a3f6b !important;
+}
+
+.exp-date {
+    background: rgba(108, 92, 231, 0.06) !important;
+    border: 1px solid rgba(108, 92, 231, 0.08) !important;
+    color: #6c5ce7 !important;
+}
+
+.exp-icon {
+    box-shadow: 0 4px 20px rgba(108, 92, 231, 0.12) !important;
+}
+
+.exp-timeline-line {
+    background: linear-gradient(180deg, #6c5ce7, #fd79a8, #fdcb6e) !important;
+}
+
+.exp-timeline-dot {
+    box-shadow: 0 0 15px rgba(108, 92, 231, 0.3) !important;
+}
+
+.exp-highlight {
+    background: rgba(108, 92, 231, 0.04) !important;
+    border-left: 3px solid rgba(108, 92, 231, 0.3) !important;
+    color: #4a3f6b !important;
+}
+
+/* ===== SKILL BARS ===== */
+.skill-name {
+    color: #1a1033 !important;
+}
+
+.skill-percent {
+    color: #6c5ce7 !important;
+}
+
+.skill-bar {
+    background: rgba(108, 92, 231, 0.06) !important;
+    border: 1px solid rgba(108, 92, 231, 0.06) !important;
+}
+
+.skill-bar-fill {
+    background: linear-gradient(90deg, #667eea, #764ba2, #f093fb) !important;
+}
+
+/* ===== TOOL CHIPS ===== */
+.tool-chip {
+    background: rgba(108, 92, 231, 0.05) !important;
+    border: 1px solid rgba(108, 92, 231, 0.08) !important;
+    color: #4a3f6b !important;
+}
+
+.tool-chip:hover {
+    background: rgba(108, 92, 231, 0.1) !important;
+    color: #6c5ce7 !important;
+}
+
+/* ===== SHOWCASE CARD DETAILS ===== */
+.showcase-title {
+    color: #1a1033 !important;
+}
+
+.showcase-desc {
+    color: #4a3f6b !important;
+}
+
+.showcase-category {
+    color: #7c6fa0 !important;
+}
+
+/* ===== ACHIEVEMENT STYLING ===== */
+.achievement-title {
+    color: #1a1033 !important;
+}
+
+.achievement-desc {
+    color: #4a3f6b !important;
+}
+
+/* ===== STAT VALUES ===== */
+.stat-value,
+.stat-number,
+.counter {
+    background: linear-gradient(135deg, #6c5ce7, #f093fb) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+}
+
+.stat-label {
+    color: #7c6fa0 !important;
+}
+
+/* ===== BUTTONS ===== */
+.btn-primary,
+.showcase-btn.primary {
+    background: linear-gradient(135deg, #6c5ce7, #fd79a8) !important;
+    color: #ffffff !important;
+    box-shadow: 0 4px 20px rgba(108, 92, 231, 0.25) !important;
+}
+
+.btn-secondary,
+.showcase-btn.secondary {
+    background: rgba(108, 92, 231, 0.06) !important;
+    border: 1px solid rgba(108, 92, 231, 0.15) !important;
+    color: #6c5ce7 !important;
+}
+
+/* ===== SOCIAL LINKS ===== */
+.social-link {
+    background: rgba(108, 92, 231, 0.05) !important;
+    border: 1px solid rgba(108, 92, 231, 0.08) !important;
+    color: #4a3f6b !important;
+}
+
+.social-link:hover {
+    background: linear-gradient(135deg, rgba(108, 92, 231, 0.12), rgba(253, 121, 168, 0.08)) !important;
+    color: #6c5ce7 !important;
+    box-shadow: 0 4px 20px rgba(108, 92, 231, 0.15) !important;
+}
+
+/* ===== CONTACT SECTION ===== */
+.contact-method-text strong {
+    color: #1a1033 !important;
+}
+
+.contact-method-text span {
+    color: #4a3f6b !important;
+}
+
+/* ===== FOOTER ===== */
+.footer {
+    background: linear-gradient(180deg, transparent 0%, rgba(237, 229, 255, 0.8) 100%) !important;
+    border-top: 1px solid rgba(108, 92, 231, 0.06) !important;
+}
+
+.footer p,
+.footer span,
+.footer a {
+    color: #4a3f6b !important;
+}
+
+/* ===== LOADER ===== */
+.page-loader {
+    background: linear-gradient(135deg, #f5f0ff, #ede5ff, #f5f0ff) !important;
+}
+
+.loader-text,
+.loader-percentage {
+    color: #6c5ce7 !important;
+}
+
+.loader-bar {
+    background: rgba(108, 92, 231, 0.08) !important;
+    border: 1px solid rgba(108, 92, 231, 0.1) !important;
+}
+
+.loader-progress {
+    background: linear-gradient(90deg, #667eea, #764ba2, #f093fb) !important;
+    box-shadow: 0 0 15px rgba(108, 92, 231, 0.4) !important;
+}
+
+/* ===== CUSTOM CURSOR ===== */
+.cursor-dot {
+    background: #6c5ce7 !important;
+    box-shadow: 0 0 15px rgba(108, 92, 231, 0.4) !important;
+}
+
+.cursor-ring {
+    border: 2px solid rgba(108, 92, 231, 0.3) !important;
+}
+
+/* ===== MATRIX CANVAS — HIDE ON LIGHT ===== */
+#matrixCanvas {
+    display: none !important;
+}
+
+/* ===== PARTICLE CANVAS — SUBTLE ===== */
+#particleCanvas {
+    opacity: 0.3 !important;
+}
+
+/* ===== THREE.JS VFX CONTAINER ===== */
+#vfx3d {
+    position: fixed !important;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -2 !important;
+    pointer-events: none;
+    opacity: 0.5;
+}
+
+#vfx3d canvas {
+    width: 100% !important;
+    height: 100% !important;
+}
+
+/* ===== STATUS BADGES ===== */
+.status-completed {
+    background: rgba(0, 206, 201, 0.08) !important;
+    color: #00b894 !important;
+    border: 1px solid rgba(0, 206, 201, 0.15) !important;
+}
+
+/* ===== SELECTION ===== */
+::selection {
+    background: rgba(108, 92, 231, 0.2) !important;
+    color: #1a1033 !important;
+}
+
+/* ===== INPUTS ===== */
+input,
+textarea,
+select {
+    background: rgba(255, 255, 255, 0.7) !important;
+    border: 1px solid rgba(108, 92, 231, 0.1) !important;
+    color: #1a1033 !important;
+}
+
+input:focus,
+textarea:focus {
+    border-color: rgba(108, 92, 231, 0.3) !important;
+    box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.06) !important;
+}
+
+/* ===== MOBILE MENU ===== */
+@media (max-width: 768px) {
+
+    .mobile-menu,
+    .navbar-menu-mobile {
+        background: rgba(255, 255, 255, 0.95) !important;
+        backdrop-filter: blur(30px) !important;
+    }
+}
