@@ -5880,3 +5880,213 @@ img[loading] {
 
 
 
+
+/* ============================================
+   ULTIMATE VFX - CLICK RIPPLE EFFECT
+   ============================================ */
+.vfx-ripple {
+    position: fixed;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background: transparent;
+    border: 2px solid rgba(0, 240, 255, 0.6);
+    pointer-events: none;
+    z-index: 99998;
+    transform: translate(-50%, -50%);
+    animation: vfxRipple 0.8s ease-out forwards;
+}
+
+@keyframes vfxRipple {
+    0% {
+        width: 4px;
+        height: 4px;
+        opacity: 1;
+        border-width: 2px;
+    }
+    100% {
+        width: 200px;
+        height: 200px;
+        opacity: 0;
+        border-width: 1px;
+    }
+}
+
+/* ===== LOADED STATE ANIMATIONS ===== */
+body.loaded .hero-title {
+    animation: heroEntrance 1s cubic-bezier(0.23, 1, 0.32, 1) forwards;
+}
+
+body.loaded .hero-subtitle {
+    animation: heroEntrance 1s cubic-bezier(0.23, 1, 0.32, 1) 0.15s forwards;
+}
+
+body.loaded .hero-actions {
+    animation: heroEntrance 1s cubic-bezier(0.23, 1, 0.32, 1) 0.3s forwards;
+}
+
+body.loaded .hero-visual {
+    animation: heroVisualEntrance 1.2s cubic-bezier(0.23, 1, 0.32, 1) 0.2s forwards;
+}
+
+@keyframes heroEntrance {
+    from {
+        opacity: 0;
+        transform: translateY(40px) scale(0.95);
+        filter: blur(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+        filter: blur(0px);
+    }
+}
+
+@keyframes heroVisualEntrance {
+    from {
+        opacity: 0;
+        transform: translateX(60px) scale(0.9);
+        filter: blur(15px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0) scale(1);
+        filter: blur(0px);
+    }
+}
+
+/* ===== ENHANCED CURSOR VFX ===== */
+.cursor-follower {
+    border: 2px solid rgba(0, 240, 255, 0.5);
+    box-shadow: 0 0 20px rgba(0, 240, 255, 0.15), inset 0 0 20px rgba(0, 240, 255, 0.05);
+    backdrop-filter: blur(1px);
+}
+
+.cursor-follower.hover {
+    width: 70px;
+    height: 70px;
+    border-color: rgba(255, 45, 117, 0.5);
+    box-shadow: 0 0 30px rgba(255, 45, 117, 0.2), inset 0 0 30px rgba(255, 45, 117, 0.05);
+    background: rgba(255, 45, 117, 0.03);
+}
+
+.cursor-dot {
+    box-shadow: 0 0 10px var(--primary), 0 0 25px rgba(0, 240, 255, 0.4), 0 0 50px rgba(0, 240, 255, 0.15);
+}
+
+/* ===== ENHANCED CARD HOVER GLOW ===== */
+.exp-card:hover,
+.showcase-card:hover,
+.achievement-card:hover {
+    box-shadow: 0 0 30px rgba(0, 240, 255, 0.08), 0 20px 60px rgba(0, 0, 0, 0.3);
+}
+
+/* ===== FLOATING ANIMATION ENHANCED ===== */
+@keyframes ultraFloat {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    25% { transform: translateY(-15px) rotate(1deg); }
+    50% { transform: translateY(-8px) rotate(-1deg); }
+    75% { transform: translateY(-20px) rotate(0.5deg); }
+}
+
+.floating-card {
+    animation: ultraFloat 6s ease-in-out infinite;
+}
+
+.floating-card.card-2 { animation-delay: 1.5s; }
+.floating-card.card-3 { animation-delay: 3s; }
+.floating-card.card-4 { animation-delay: 4.5s; }
+
+/* ===== ENHANCED SECTION TRANSITIONS ===== */
+.section {
+    position: relative;
+    overflow: hidden;
+}
+
+.section::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(0, 240, 255, 0.15), rgba(123, 47, 255, 0.1), transparent);
+}
+
+/* ===== ENHANCED NAVBAR GLOW ===== */
+.navbar.scrolled {
+    background: rgba(7, 8, 15, 0.85);
+    backdrop-filter: blur(25px) saturate(200%);
+    box-shadow: 0 4px 30px rgba(0, 0, 0, 0.5), 0 0 40px rgba(0, 240, 255, 0.04);
+}
+
+/* ===== ICON GLOW ANIMATION ===== */
+.logo-icon {
+    position: relative;
+    overflow: hidden;
+}
+
+.logo-icon::after {
+    content: '';
+    position: absolute;
+    inset: -50%;
+    background: conic-gradient(from 0deg, transparent, rgba(0, 240, 255, 0.2), transparent, rgba(123, 47, 255, 0.2), transparent);
+    animation: iconSpin 4s linear infinite;
+}
+
+@keyframes iconSpin {
+    from { transform: rotate(0deg); }
+    to { transform: rotate(360deg); }
+}
+
+.logo-icon-text {
+    position: relative;
+    z-index: 2;
+}
+
+/* ===== BREATHING GLOW ON SECTIONS ===== */
+.section-label {
+    text-shadow: 0 0 20px rgba(0, 240, 255, 0.3);
+    animation: breatheGlow 3s ease-in-out infinite;
+}
+
+@keyframes breatheGlow {
+    0%, 100% { text-shadow: 0 0 10px rgba(0, 240, 255, 0.2); }
+    50% { text-shadow: 0 0 25px rgba(0, 240, 255, 0.4), 0 0 50px rgba(0, 240, 255, 0.1); }
+}
+
+/* ===== SKILL CATEGORY HOVER ===== */
+.skill-category:hover .category-icon {
+    box-shadow: 0 0 30px rgba(0, 240, 255, 0.2);
+    transform: scale(1.05) rotate(5deg);
+}
+
+/* ===== EXPERIENCE CARD SCAN LINE ===== */
+.exp-card::after {
+    content: '';
+    position: absolute;
+    top: -100%;
+    left: 0;
+    width: 100%;
+    height: 50%;
+    background: linear-gradient(180deg, transparent, rgba(0, 240, 255, 0.02), transparent);
+    animation: cardScanLine 6s linear infinite;
+    pointer-events: none;
+}
+
+@keyframes cardScanLine {
+    0% { top: -50%; }
+    100% { top: 100%; }
+}
+
+/* ===== SCROLL PROGRESS BAR ===== */
+.scroll-progress {
+    position: fixed;
+    top: 0;
+    left: 0;
+    height: 2px;
+    background: var(--gradient-hero);
+    z-index: 10000;
+    transition: width 0.1s;
+    box-shadow: 0 0 10px rgba(0, 240, 255, 0.5);
+}
