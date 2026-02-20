@@ -527,3 +527,98 @@ textarea:focus {
         backdrop-filter: blur(30px) !important;
     }
 }
+
+/* ===== FEATURED EXPERIENCE CARD (ISRO) ===== */
+.featured-content {
+    background: rgba(255, 255, 255, 0.85) !important;
+}
+
+.featured-glow {
+    background: linear-gradient(135deg, #6c5ce7 0%, #fd79a8 25%, #fdcb6e 50%, #6c5ce7 75%, #fd79a8 100%) !important;
+    background-size: 400% 400% !important;
+}
+
+.featured-title {
+    color: #1a1033 !important;
+    -webkit-text-fill-color: #1a1033 !important;
+}
+
+.featured-company {
+    color: #6c5ce7 !important;
+}
+
+.featured-company strong {
+    color: #6c5ce7 !important;
+}
+
+.featured-date {
+    color: #6c5ce7 !important;
+}
+
+.featured-location {
+    color: #7c6fa0 !important;
+}
+
+.featured-summary {
+    color: #4a3f6b !important;
+}
+
+.featured-badge {
+    color: #ffffff !important;
+}
+
+.featured-highlights li {
+    color: #4a3f6b !important;
+}
+
+.featured-scan-line,
+.featured-scan-line::before {
+    display: none !important;
+}
+
+/* ===== HIDE DARK THEME ARTIFACTS ===== */
+.scan-lines,
+.grid-overlay {
+    display: none !important;
+}
+
+/* ===== FLAGSHIP PROJECT BADGE FIX ===== */
+.hero-project-badge {
+    position: absolute !important;
+    top: 15px !important;
+    left: 15px !important;
+    transform: none !important;
+    background: linear-gradient(135deg, #fdcb6e, #f39c12) !important;
+    color: #1a1033 !important;
+    z-index: 5 !important;
+    font-size: 0.7rem !important;
+    padding: 0.4rem 1rem !important;
+    box-shadow: 0 4px 15px rgba(253, 203, 110, 0.3) !important;
+}
+
+/* ===== PROJECT HERO VISUAL ===== */
+.project-hero-visual {
+    background: rgba(108, 92, 231, 0.04) !important;
+    border-radius: 20px !important;
+}
+
+.project-hero-icon {
+    color: #ffffff !important;
+}
+
+.project-hero-icon i {
+    color: #ffffff !important;
+}
+
+/* ===== ORBS IN PROJECT ===== */
+.hero-orb {
+    background: rgba(108, 92, 231, 0.08) !important;
+    border: 1px solid rgba(108, 92, 231, 0.1) !important;
+}
+
+/* ===== EXPERIENCE HIGHLIGHT CHIPS ===== */
+.exp-skill {
+    background: rgba(108, 92, 231, 0.06) !important;
+    border: 1px solid rgba(108, 92, 231, 0.1) !important;
+    color: #6c5ce7 !important;
+}
