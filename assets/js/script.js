@@ -1,4 +1,4 @@
-/* ============================================
+﻿/* ============================================
    VASHISTA C V - ULTIMATE VFX GAMING PORTFOLIO
    Next-Gen Visual Effects Engine v5.0
    ============================================ */
@@ -274,7 +274,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 
     // =============================================
-    //  ⚡ ULTIMATE VFX ENGINE - MULTI-LAYER CANVAS
+    //  âš¡ ULTIMATE VFX ENGINE - MULTI-LAYER CANVAS
     // =============================================
 
     const particleCanvas = document.getElementById('particleCanvas');
@@ -305,7 +305,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 this.wavelength = 300 + Math.random() * 400;
                 this.speed = 0.0003 + Math.random() * 0.0005;
                 this.phase = Math.random() * Math.PI * 2;
-                this.hue = [170, 200, 260, 290, 330, 50][i % 6];
+                this.hue = [260, 290, 330, 45, 200, 180][i % 6];
                 this.thickness = 80 + Math.random() * 120;
                 this.opacity = 0.015 + Math.random() * 0.025;
             }
@@ -339,7 +339,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 this.x = Math.random() * W;
                 this.y = Math.random() * H;
                 this.radius = 150 + Math.random() * 250;
-                this.hue = [180, 260, 320, 45][Math.floor(Math.random() * 4)];
+                this.hue = [260, 310, 45, 200][Math.floor(Math.random() * 4)];
                 this.speedX = (Math.random() - 0.5) * 0.3;
                 this.speedY = (Math.random() - 0.5) * 0.2;
                 this.pulseSpeed = 0.001 + Math.random() * 0.002;
@@ -380,7 +380,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 this.size = 1 + Math.random() * 2.5;
                 this.speedX = (Math.random() - 0.5) * 1.2;
                 this.speedY = (Math.random() - 0.5) * 1.2;
-                this.hue = [175, 200, 260, 320, 45][Math.floor(Math.random() * 5)];
+                this.hue = [260, 310, 45, 200, 330][Math.floor(Math.random() * 5)];
                 this.life = 1;
                 this.decay = 0.0005 + Math.random() * 0.001;
                 this.wobbleSpeed = 0.02 + Math.random() * 0.03;
@@ -395,7 +395,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 this.y += this.speedY + Math.cos(t * this.wobbleSpeed * 0.8) * this.wobbleAmp;
                 this.life -= this.decay;
 
-                // Mouse interaction — flee from cursor
+                // Mouse interaction â€” flee from cursor
                 if (!isMobile) {
                     const dx = this.x - mouseX;
                     const dy = this.y - mouseY;
@@ -449,7 +449,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 this.size = 0.8 + Math.random() * 1.5;
                 this.speedX = (Math.random() - 0.5) * 0.4;
                 this.speedY = (Math.random() - 0.5) * 0.4;
-                this.hue = Math.random() > 0.5 ? 185 : 260;
+                this.hue = [260, 310, 45, 180, 200][Math.floor(Math.random() * 5)];
                 this.opacity = 0.15 + Math.random() * 0.35;
             }
             update() {
@@ -490,7 +490,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 this.size = 1 + Math.random() * 3;
                 this.life = 1;
                 this.decay = 0.015 + Math.random() * 0.025;
-                this.hue = [175, 200, 260, 320, 45][Math.floor(Math.random() * 5)];
+                this.hue = [260, 310, 45, 200, 330][Math.floor(Math.random() * 5)];
                 this.gravity = 0.05;
             }
             update() {
@@ -528,7 +528,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 this.x = x; this.y = y;
                 this.radius = 5; this.maxRadius = 120;
                 this.life = 1; this.speed = 4;
-                this.hue = [175, 260, 320][Math.floor(Math.random() * 3)];
+                this.hue = [260, 310, 45][Math.floor(Math.random() * 3)];
             }
             update() {
                 this.radius += this.speed;
@@ -601,7 +601,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     if (dist < 160) {
                         const alpha = 0.06 * (1 - dist / 160);
                         ctx.beginPath();
-                        ctx.strokeStyle = `hsla(190, 100%, 60%, ${alpha})`;
+                        ctx.strokeStyle = `hsla(270, 100%, 60%, ${alpha})`;
                         ctx.lineWidth = 0.5;
                         ctx.moveTo(networkNodes[i].x, networkNodes[i].y);
                         ctx.lineTo(networkNodes[j].x, networkNodes[j].y);
@@ -616,7 +616,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     if (dist < 200) {
                         const alpha = 0.12 * (1 - dist / 200);
                         ctx.beginPath();
-                        ctx.strokeStyle = `hsla(175, 100%, 70%, ${alpha})`;
+                        ctx.strokeStyle = `hsla(310, 100%, 70%, ${alpha})`;
                         ctx.lineWidth = 1;
                         ctx.moveTo(networkNodes[i].x, networkNodes[i].y);
                         ctx.lineTo(mouseX, mouseY);
@@ -680,13 +680,13 @@ document.addEventListener('DOMContentLoaded', function () {
         const mctx = matrixCanvas.getContext('2d');
         matrixCanvas.width = window.innerWidth;
         matrixCanvas.height = window.innerHeight;
-        const chars = '01アイウエオVASHISTAΩΔΣ∞';
+        const chars = '01ã‚¢ã‚¤ã‚¦ã‚¨ã‚ªVASHISTAÎ©Î”Î£âˆž';
         const fontSize = 13;
         const columns = Math.floor(matrixCanvas.width / fontSize);
         const drops = Array(columns).fill(1);
 
         function drawMatrix() {
-            mctx.fillStyle = 'rgba(7, 8, 15, 0.06)';
+            mctx.fillStyle = 'rgba(15, 12, 41, 0.06)';
             mctx.fillRect(0, 0, matrixCanvas.width, matrixCanvas.height);
             mctx.font = fontSize + 'px monospace';
             for (let i = 0; i < drops.length; i++) {
@@ -748,6 +748,7 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     // ===== GAMING CONSOLE LOG =====
-    console.log('%c🎮 ULTIMATE VFX PORTFOLIO v5.0', 'color: #00f0ff; font-size: 24px; font-weight: 900; text-shadow: 0 0 30px #00f0ff, 0 0 60px #7b2fff;');
-    console.log('%c⚡ Aurora + Nebula + Fireflies + Lightning + Explosions + Constellation Network', 'color: #ff2d75; font-size: 12px;');
+    console.log('%cðŸŽ® ULTIMATE VFX PORTFOLIO v5.0', 'color: #6c5ce7; font-size: 24px; font-weight: 900; text-shadow: 0 0 30px #6c5ce7, 0 0 60px #7b2fff;');
+    console.log('%câš¡ Aurora + Nebula + Fireflies + Lightning + Explosions + Constellation Network', 'color: #ff2d75; font-size: 12px;');
 });
+
